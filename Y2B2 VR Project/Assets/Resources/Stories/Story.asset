@@ -12,12 +12,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 02b4e6a62a7492949a64e52455874303, type: 3}
   m_Name: Story
   m_EditorClassIdentifier: 
-  name: test story
+  id: 1
   audio: {fileID: 0}
   parallax: {fileID: 0}
-  storyPart: 0
   isInteractable: 1
-  optionText:
-  - Hello World
-  - Test
-  effectType: 0000000000000000
+  option1: kill
+  resultOption1: {fileID: 0}
+  option2: save
+  resultOption2: {fileID: 0}
+  resultTimer: {fileID: 0}
+  KillHere: 0
+  endStatement: {fileID: 0}

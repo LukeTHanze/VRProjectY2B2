@@ -12,17 +12,25 @@ public class Stories : ScriptableObject
      * 
      */
     [Header("Identity")]
-    public string name; // isnt required, only used if we need to check for a particular story
+    public float id; // isnt required, only used if we need to check for a particular story
 
     [Header("Foundation")]
-    public AudioClip audio;
+    public AudioClip audio; // AudioClip
     public Image parallax; // or animation? depending on how we want to do it.
-    public int storyPart;
 
     [Header("Interactables")]
     public bool isInteractable = true;
-    public string[] optionText;
-    public int[] effectType; // 0 - neutral, 1 - pos, 2 - neg. Etc..
+    public string option1;
+    public Stories resultOption1;
+
+    public string option2;
+    public Stories resultOption2;
+
+    public Stories resultTimer; // time-out option
+
+    [Header("Kill Branch")]
+    public bool KillHere;
+    public AudioClip endStatement;
 
 }
 
