@@ -6,13 +6,10 @@ using UnityEngine.UI;
 [CreateAssetMenu(fileName = "Story", menuName = "New Story")]
 public class Stories : ScriptableObject
 {
-    /*
-     * 
-     * TODO
-     * 
-     */
     [Header("Identity")]
-    public float id; // isnt required, only used if we need to check for a particular story
+    public int storyID; // isnt required, only used if we need to check for a particular story
+    public int branchID;
+    public int nestedBranchID;
 
     [Header("Foundation")]
     public AudioClip audio; // AudioClip

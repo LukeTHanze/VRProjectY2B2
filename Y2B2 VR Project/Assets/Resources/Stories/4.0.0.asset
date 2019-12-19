@@ -10,15 +10,17 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 02b4e6a62a7492949a64e52455874303, type: 3}
-  m_Name: Story
+  m_Name: 4.0.0
   m_EditorClassIdentifier: 
-  id: 1
+  storyID: 4
+  branchID: 0
+  nestedBranchID: 0
   audio: {fileID: 0}
   parallax: {fileID: 0}
   isInteractable: 1
-  option1: kill
+  option1: hello
   resultOption1: {fileID: 0}
-  option2: save
+  option2: world
   resultOption2: {fileID: 0}
   resultTimer: {fileID: 0}
   KillHere: 0

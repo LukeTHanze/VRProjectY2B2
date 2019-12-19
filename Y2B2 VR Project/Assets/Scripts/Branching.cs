@@ -36,13 +36,17 @@ public class Branching : MonoBehaviour
      */
 
     private Stories[] stories;
-    public List<Stories> currentBranch = new List<Stories>();
-    GameManager gm;
+    public List<Stories> currentBranch = new List<Stories>(); // 0 <-> 3 - Displayed Stories // 4 <-> 7 - Stored Stories
+    public Stories[] newBranch = { null, null, null, null };
+
+
+    GameController gm;
 
 
     private void Start()
     {
-        gm = GameObject.FindGameObjectWithTag("Manager").GetComponent<GameManager>();
+        gm = GameObject.FindGameObjectWithTag("GameController").GetComponent<GameController>();
+        stories = Resources.LoadAll<Stories>("Stories");
     }
 
 
@@ -52,13 +56,35 @@ public class Branching : MonoBehaviour
      */
     public void UpdateBranch()
     {
-        foreach(Stories story in stories)
+        currentBranch.Clear();
+
+        if (gm.whatBranch == 1)
         {
-            if(gm.StoryNumber == story.id)
+            foreach (Stories story in stories)
             {
-                currentBranch.Add(story);
+                for (int i = 0; i < gm.branch.Length; i++)
+                {
+                    {
+                        if (gm.branch[i] == story.storyID && story.branchID == 0 && story.nestedBranchID == 0)
+                        {
+                            currentBranch.Add(story);
+                            gm.RefreshUI(story, i);
+                            gm.storiesRemaining++;
+                            Debug.Log(currentBranch[i].storyID + "." + currentBranch[i].branchID + "." + currentBranch[i].nestedBranchID + "." + " - This story is loaded. At [" + i + "]");
+                        }
+                    }
+                }
+            }
+        }
+        else if (gm.whatBranch == 2)
+        {
+            gm.storiesRemaining = 4;
+
+            for (int i = 0; i < gm.branch.Length; i++)
+            {
+                gm.RefreshUI(newBranch[i], i);
+                Debug.Log(newBranch[i].storyID + "." + newBranch[i].branchID + "." + newBranch[i].nestedBranchID + "." + " - This story is loaded. At [" + i + "]");
             }
         }
     }
-
 }
