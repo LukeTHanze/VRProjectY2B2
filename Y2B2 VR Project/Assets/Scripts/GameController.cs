@@ -5,14 +5,29 @@ using UnityEngine.UI;
 
 public class GameController : MonoBehaviour
 {
+
+    /*
+     * Main controller of events within the game
+     * 
+     * 
+     * TODO:
+     * - IEnumarator based on audioclip length
+     * - End States
+     */
     Branching br;
     public int[] branch = { 0, 1, 2, 3, 4 };
 
     public int whatBranch = 1;
-
     public int storiesRemaining;
 
+    // for setting up the options as 3d objects
+    public GameObject opt1Obj_1;
+    public GameObject opt2Obj_1;
+
     /*
+     
+        // For setting up the options as UI Buttons
+     
     public Button opt1Btn_1;
     public Button opt2Btn_1;
     public Text option1_1;
@@ -45,7 +60,9 @@ public class GameController : MonoBehaviour
         br = GetComponent<Branching>();
         br.UpdateBranch();
 
-        SetupButtons();
+       
+
+        //SetupButtons(); // only needed for Canvas UI version
     }
 
     private void Update()
@@ -102,35 +119,49 @@ public class GameController : MonoBehaviour
 
     public void RefreshUI(Stories story, int id)
     {
-        /*
         switch (id)
         {
             case 0:
-                option1_1.text = story.option1;
+               /* opt1Obj_1.GetComponent<WarpText>().UpdateText = story.option1;
                 option2_1.text = story.option2;
-                storyID1.text = "ID: " + story.storyID + "." + story.branchID + "." + story.nestedBranchID;
-                break;
-            case 1:
-                option1_2.text = story.option1;
-                option2_2.text = story.option2;
-                storyID2.text = "ID: " + story.storyID + "." + story.branchID + "." + story.nestedBranchID;
-                break;
-            case 2:
-                option1_3.text = story.option1;
-                option2_3.text = story.option2;
-                storyID3.text = "ID: " + story.storyID + "." + story.branchID + "." + story.nestedBranchID;
-                break;
-            case 3:
-                option1_4.text = story.option1;
-                option2_4.text = story.option2;
-                storyID4.text = "ID: " + story.storyID + "." + story.branchID + "." + story.nestedBranchID;
+                storyID1.text = "ID: " + story.storyID + "." + story.branchID + "." + story.nestedBranchID;*/
                 break;
             default:
                 break;
         }
-        */
-    }
+        
+                /*
+                // Canvas Version
+                switch (id)
+                {
+                    case 0:
+                        option1_1.text = story.option1;
+                        option2_1.text = story.option2;
+                        storyID1.text = "ID: " + story.storyID + "." + story.branchID + "." + story.nestedBranchID;
+                        break;
+                    case 1:
+                        option1_2.text = story.option1;
+                        option2_2.text = story.option2;
+                        storyID2.text = "ID: " + story.storyID + "." + story.branchID + "." + story.nestedBranchID;
+                        break;
+                    case 2:
+                        option1_3.text = story.option1;
+                        option2_3.text = story.option2;
+                        storyID3.text = "ID: " + story.storyID + "." + story.branchID + "." + story.nestedBranchID;
+                        break;
+                    case 3:
+                        option1_4.text = story.option1;
+                        option2_4.text = story.option2;
+                        storyID4.text = "ID: " + story.storyID + "." + story.branchID + "." + story.nestedBranchID;
+                        break;
+                    default:
+                        break;
+                }
+                */
+        }
 
+
+    // can be refactored later for performance boost
     private void SelectOption(int id)
     {
         Debug.Log(id + " Story - Option 1");

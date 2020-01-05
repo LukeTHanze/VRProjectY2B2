@@ -4,6 +4,13 @@ using UnityEngine;
 
 public class Branching : MonoBehaviour
 {
+
+
+    /*
+     * Information handler to find out where the story currently is and when to progress it
+     */
+
+
     /*
      * 
     [Header("Identity")]
@@ -28,20 +35,13 @@ public class Branching : MonoBehaviour
     public AudioClip endStatement;
 
      * 
-     * check story part X / Y / Z
-     * check id
-     * 
-     * check rest
-     * 
      */
 
     private Stories[] stories;
     public List<Stories> currentBranch = new List<Stories>(); // 0 <-> 3 - Displayed Stories // 4 <-> 7 - Stored Stories
     public Stories[] newBranch = { null, null, null, null };
 
-
     GameController gm;
-
 
     private void Start()
     {
@@ -49,35 +49,32 @@ public class Branching : MonoBehaviour
         stories = Resources.LoadAll<Stories>("Stories");
     }
 
-
-
-    /*
-     * TODO
-     */
     public void UpdateBranch()
     {
         currentBranch.Clear();
 
         if (gm.whatBranch == 1)
         {
+            Debug.Log("route 1");
             foreach (Stories story in stories)
             {
+                Debug.Log(story.storyID + " - Loaded");
                 for (int i = 0; i < gm.branch.Length; i++)
                 {
+                    if (gm.branch[i] == story.storyID && story.branchID == 0 && story.nestedBranchID == 0)
                     {
-                        if (gm.branch[i] == story.storyID && story.branchID == 0 && story.nestedBranchID == 0)
-                        {
-                            currentBranch.Add(story);
-                            gm.RefreshUI(story, i);
-                            gm.storiesRemaining++;
-                            Debug.Log(currentBranch[i].storyID + "." + currentBranch[i].branchID + "." + currentBranch[i].nestedBranchID + "." + " - This story is loaded. At [" + i + "]");
-                        }
+                        Debug.Log("I loaded");
+                        currentBranch.Add(story);
+                        gm.RefreshUI(story, i);
+                        gm.storiesRemaining++;
+                        Debug.Log(currentBranch[i].storyID + "." + currentBranch[i].branchID + "." + currentBranch[i].nestedBranchID + "." + " - This story is loaded. At [" + i + "]");
                     }
                 }
             }
         }
         else if (gm.whatBranch == 2)
         {
+            Debug.Log("route 2");
             gm.storiesRemaining = 4;
 
             for (int i = 0; i < gm.branch.Length; i++)
@@ -85,6 +82,10 @@ public class Branching : MonoBehaviour
                 gm.RefreshUI(newBranch[i], i);
                 Debug.Log(newBranch[i].storyID + "." + newBranch[i].branchID + "." + newBranch[i].nestedBranchID + "." + " - This story is loaded. At [" + i + "]");
             }
+        }
+        else
+        {
+            Debug.Log("no stories found");
         }
     }
 }
