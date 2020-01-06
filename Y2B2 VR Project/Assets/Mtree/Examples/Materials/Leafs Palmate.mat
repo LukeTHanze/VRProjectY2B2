@@ -4,11 +4,12 @@
 Material:
   serializedVersion: 6
   m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
   m_Name: Leafs Palmate
   m_Shader: {fileID: 4800000, guid: 364ae1069b1778f43b5e632a66bdb48e, type: 3}
-  m_ShaderKeywords: _DOUBLESIDED_ON _GLOSSYREFLECTIONS_OFF _LEAFTYPE_DEFAULT _SPECULARHIGHLIGHTS_OFF
+  m_ShaderKeywords: _DOUBLESIDED_ON _GLOSSYREFLECTIONS_OFF _LEAFTYPE_DEFAULT
   m_LightmapFlags: 4
   m_EnableInstancingVariants: 1
   m_DoubleSidedGI: 1
@@ -88,9 +89,9 @@ Material:
     - _DoubleSidedNormalMode: 2
     - _DstBlend: 0
     - _Float0: 0
-    - _GlobalTurbulenceInfluence: 1
+    - _GlobalTurbulenceInfluence: 0.5
     - _GlobalWindInflucene: 1
-    - _GlobalWindInfluence: 1
+    - _GlobalWindInfluence: 0.5
     - _GlossMapScale: 1
     - _Glossiness: 0
     - _GlossinessThreshold: 0
@@ -124,7 +125,7 @@ Material:
     - _SmoothnessVariance: 0.5
     - _SmoothnessVariance1: 0.5
     - _Specular: 1
-    - _SpecularHighlights: 0
+    - _SpecularHighlights: 1
     - _Specularity: 0
     - _SrcBlend: 1
     - _StencilRef: 2
@@ -146,7 +147,7 @@ Material:
     - _TransparentSortPriority: 0
     - _UVSec: 0
     - _UseShadowThreshold: 0
-    - _Value: 1.36
+    - _Value: 0.5
     - _WindMode: 1
     - _WindStrength: 0.1
     - _ZTestDepthEqualForOpaque: 3
