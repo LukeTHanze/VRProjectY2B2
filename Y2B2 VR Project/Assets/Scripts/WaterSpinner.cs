@@ -7,6 +7,6 @@ public class WaterSpinner : MonoBehaviour
 
     void Update()
     {
-       transform.Rotate(10f *Time.deltaTime, 0.0f, 0.0f, Space.Self);
+       transform.Rotate(0, 10f * Time.deltaTime, 0, Space.Self);
     }
 }
