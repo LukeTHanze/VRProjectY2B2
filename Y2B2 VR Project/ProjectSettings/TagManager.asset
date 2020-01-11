@@ -6,6 +6,7 @@ TagManager:
   tags:
   - Manager
   - Story
+  - Option
   layers:
   - Default
   - TransparentFX

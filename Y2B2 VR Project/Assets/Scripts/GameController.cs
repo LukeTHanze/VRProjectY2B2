@@ -20,6 +20,7 @@ public class GameController : MonoBehaviour
     public int whatBranch = 1;
     public int storiesRemaining;
 
+
     // for setting up the options as 3d objects
     public GameObject opt1Obj_1;
     public GameObject opt2Obj_1;
@@ -58,15 +59,15 @@ public class GameController : MonoBehaviour
     private void Start()
     {
         br = GetComponent<Branching>();
-        br.UpdateBranch();
+        br.LoadStories();
 
-       
-
+        //br.UpdateBranch();
         //SetupButtons(); // only needed for Canvas UI version
     }
 
     private void Update()
     {
+        /*
         if (Input.GetKeyDown(KeyCode.E))
         {
             Debug.Log("Refreshing");
@@ -85,6 +86,7 @@ public class GameController : MonoBehaviour
             whatBranch++;
             br.UpdateBranch();
         }
+        */
     }
 
     void SetupButtons()
@@ -161,7 +163,11 @@ public class GameController : MonoBehaviour
         }
 
 
-    // can be refactored later for performance boost
+    /*
+     * 
+     * Used for delegation when using UI Canvas's instead of gameobjects for selecting options
+     * 
+
     private void SelectOption(int id)
     {
         Debug.Log(id + " Story - Option 1");
@@ -192,4 +198,5 @@ public class GameController : MonoBehaviour
 
         storiesRemaining--;
     }
+    */
 }

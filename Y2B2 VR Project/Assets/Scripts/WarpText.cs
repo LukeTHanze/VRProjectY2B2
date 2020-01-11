@@ -6,7 +6,6 @@ using TMPro;
 //[ExecuteInEditMode] // for debugging purposes
 public class WarpText : MonoBehaviour
 {
-
     /*
      * 
      * Make text warp around the object it is attatched too
@@ -21,12 +20,20 @@ public class WarpText : MonoBehaviour
     public string RoundText = "";
     public float Radius;
     public GameObject TextMeshPrefab;
+    [Header("Testing Options")]
     public bool create, destroy;
+
+    private int _story, _id;
+    private Branching br;
 
     List<GameObject> prefabs = new List<GameObject>();
 
     private void Start()
     {
+        br = GameObject.FindGameObjectWithTag("GameController").GetComponent<Branching>();
+
+        Vector3 center = transform.position;
+
         CreateText();
     }
 
@@ -41,6 +48,7 @@ public class WarpText : MonoBehaviour
         {
             DestoryText();
         }
+
     }
 
     void CreateText()
@@ -50,14 +58,17 @@ public class WarpText : MonoBehaviour
         for (int i = 0; i < RoundText.Length; i++)
         {
             Vector3 pos = RandomCircle(center, Radius, ang);
-            Quaternion rot = Quaternion.FromToRotation(Vector3.forward, center - pos);
+            Quaternion rot = Quaternion.FromToRotation(Vector3.forward, center - pos); ;
 
-            prefabs.Add(Instantiate(TextMeshPrefab, pos, rot));
+            prefabs.Add(Instantiate(TextMeshPrefab, pos, rot, transform.parent = transform));
             char c = RoundText[i];
             prefabs[i].GetComponentInChildren<TextMeshPro>().text = c.ToString();
-            ang += 360 / RoundText.Length - 1;
+            ang += -180 / RoundText.Length - 1;
+
+            //ang += -180 / RoundText.Length - 1;
+            prefabs[i].transform.rotation = Quaternion.Euler(90, prefabs[i].transform.rotation.y + 90, prefabs[i].transform.rotation.z);
+
         }
-        prefabs[0].transform.rotation = Quaternion.Euler(0, prefabs[0].transform.rotation.y, prefabs[0].transform.rotation.z);
         create = false;
     }
 

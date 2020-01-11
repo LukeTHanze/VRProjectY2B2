@@ -37,11 +37,15 @@ public class Branching : MonoBehaviour
      * 
      */
 
-    private Stories[] stories;
+    public Stories[] stories;
     public List<Stories> currentBranch = new List<Stories>(); // 0 <-> 3 - Displayed Stories // 4 <-> 7 - Stored Stories
     public Stories[] newBranch = { null, null, null, null };
+    public int accessed;
+    public string opt1;
+    public string opt2;
 
     GameController gm;
+    
 
     private void Start()
     {
@@ -49,6 +53,8 @@ public class Branching : MonoBehaviour
         stories = Resources.LoadAll<Stories>("Stories");
     }
 
+    
+    /*
     public void UpdateBranch()
     {
         currentBranch.Clear();
@@ -87,5 +93,93 @@ public class Branching : MonoBehaviour
         {
             Debug.Log("no stories found");
         }
+    }
+    */
+
+    public void LoadStories()
+    {
+        foreach (Stories story in stories)
+        {
+            for (int i = 0; i < gm.branch.Length; i++)
+            {
+                if (gm.branch[i] == story.storyID && story.branchID == 0 && story.nestedBranchID == 0)
+                {
+                    Debug.Log("Loaded: " + story.storyID + "." + story.branchID + "." + story.nestedBranchID);
+                    currentBranch.Add(story);
+                }
+            }
+        }
+    }
+
+    public void UpdateBranch(int id, int branch, int location)
+    {
+        for(int i = 0; i < newBranch.Length; i++)
+        {
+            if(currentBranch[i].storyID == branch)
+            {
+                if(location == 1)
+                {
+                    // start
+                    Debug.Log("Location: 1 = " + location);
+
+                    // set X.[Y].0
+                    if (id == 1)
+                    {
+                        foreach (Stories story in stories)
+                        {
+                            if (story.storyID == branch && story.branchID == id && story.nestedBranchID == 0)
+                            {
+                                Debug.Log("story updated");
+                                currentBranch[i] = story;
+
+                                opt1 = story.option1;
+                                opt2 = story.option2;
+
+                                accessed = OutputUpdate(location++);
+                            }
+                        }
+                    }
+                    else if (id == 2)
+                    {
+                        foreach (Stories story in stories)
+                        {
+                            if (story.storyID == branch && story.branchID == id && story.nestedBranchID == 0)
+                            {
+                                Debug.Log("story updated");
+                                currentBranch[i] = story;
+
+                                opt1 = story.option1;
+                                opt2 = story.option2;
+
+                                accessed = OutputUpdate(location++);
+                            }
+                        }
+                    }
+                    
+                }
+                else if(location == 2)
+                {
+                    // center
+                    Debug.Log("Location: 2 = " + location);
+                    accessed = OutputUpdate(location++);
+                }
+                else if(location == 3)
+                {
+                    // end
+                    Debug.Log("Location: 3 = " + location);
+                    accessed = OutputUpdate(location++);
+                }
+                else
+                {
+                    // kill
+                }
+            }
+        }
+    }
+
+    public int OutputUpdate(int value)
+    {
+        value++;
+        return value;
     }
 }
