@@ -290,6 +290,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   id: 2
   play: 1
+  location: 1
+  test: 0
 --- !u!1 &575316770
 GameObject:
   m_ObjectHideFlags: 0
@@ -360,6 +362,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   id: 2
   storyId: 1
+  Twin: {fileID: 1173571552}
   rend: {fileID: 0}
   result: {fileID: 2100000, guid: 172e1f165d498e34788305a6cf2057b5, type: 2}
   start: {fileID: 2100000, guid: 33d908fb03ce6d44491233822fb8bc28, type: 2}
@@ -440,7 +443,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 33d908fb03ce6d44491233822fb8bc28, type: 2}
+  - {fileID: 2100000, guid: a53352338bad3e14592309b3d4365938, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -614,6 +617,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   id: 3
   play: 1
+  location: 1
+  test: 0
 --- !u!1 &1030944222
 GameObject:
   m_ObjectHideFlags: 0
@@ -805,7 +810,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 400006, guid: ce816f2e6abb0504092c23ed9b970dfd, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 0
+      value: 1.042
       objectReference: {fileID: 0}
     - target: {fileID: 400006, guid: ce816f2e6abb0504092c23ed9b970dfd, type: 3}
       propertyPath: m_LocalRotation.x
@@ -919,6 +924,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   id: 1
   storyId: 1
+  Twin: {fileID: 575316770}
   rend: {fileID: 0}
   result: {fileID: 2100000, guid: 172e1f165d498e34788305a6cf2057b5, type: 2}
   start: {fileID: 2100000, guid: 33d908fb03ce6d44491233822fb8bc28, type: 2}
@@ -999,7 +1005,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 33d908fb03ce6d44491233822fb8bc28, type: 2}
+  - {fileID: 2100000, guid: 02a499aecfe22414e9a4b44cf2e139f8, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -1219,7 +1225,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1478078277}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 1.569, y: 1.215, z: 0.962}
+  m_LocalPosition: {x: 1.569, y: 0.936, z: 0.962}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1173571553}
@@ -1241,6 +1247,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   id: 1
   play: 1
+  location: 1
+  test: 0
 --- !u!1 &1479614217
 GameObject:
   m_ObjectHideFlags: 0
@@ -1274,14 +1282,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   stories: []
   currentBranch: []
-  newBranch:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
+  storedBranch: []
   accessed: 0
-  opt1: 
-  opt2: 
+  result: 0
 --- !u!114 &1479614219
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1370,6 +1373,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   id: 4
   play: 1
+  location: 1
+  test: 0
 --- !u!1 &2000036611 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 134650, guid: ce816f2e6abb0504092c23ed9b970dfd,

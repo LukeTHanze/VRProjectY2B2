@@ -14,7 +14,6 @@ public class WarpText : MonoBehaviour
      * - Acts on a radius
      * - Font size needs to be changed within a textmeshpro prefab
      * 
-     * Leaving out animated text/rotations until after we find out if we're actually going to use it
      */
 
     public string RoundText = "";
@@ -65,7 +64,6 @@ public class WarpText : MonoBehaviour
             prefabs[i].GetComponentInChildren<TextMeshPro>().text = c.ToString();
             ang += -180 / RoundText.Length - 1;
 
-            //ang += -180 / RoundText.Length - 1;
             prefabs[i].transform.rotation = Quaternion.Euler(90, prefabs[i].transform.rotation.y + 90, prefabs[i].transform.rotation.z);
 
         }

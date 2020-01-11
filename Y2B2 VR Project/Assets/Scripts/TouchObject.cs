@@ -12,6 +12,7 @@ public class TouchObject : MonoBehaviour
     [Header("Main")]
     public int id;
     public int storyId;
+    public GameObject Twin;
 
     [Header("Renderer Options")]
     public Renderer rend;
@@ -22,15 +23,18 @@ public class TouchObject : MonoBehaviour
 
     private GameController gc;
     private Branching br;
-    private int location = 1;
+    //private int location = 1;
     private bool started;
+    private int block = 0;
 
     private void Start()
     {
+        /*
         rend = GetComponent<Renderer>();
         rend.enabled = true;
 
         rend.material = start;
+        */
 
         gc = GameObject.FindGameObjectWithTag("GameController").GetComponent<GameController>();
         br = GameObject.FindGameObjectWithTag("GameController").GetComponent<Branching>();
@@ -43,12 +47,15 @@ public class TouchObject : MonoBehaviour
     {
         if (select)
         {
-            br.UpdateBranch(id, storyId, location);
+            WaitForWake();
 
-            location = br.accessed;
+            gameObject.GetComponentInParent<NodeInfo>().location++;
             br.accessed = 0;
 
-            WaitForWake();
+            block = br.result;
+            br.result = 0;
+
+            StartCoroutine(FixRotation(0.1f));
 
             select = false;
         }
@@ -56,38 +63,28 @@ public class TouchObject : MonoBehaviour
 
     void WaitForWake()
     {
-        //gameObject.SetActive(false);
-        gameObject.GetComponentInParent<NodeInfo>().play = false;
+        // Instead of deactivating the gameobject, move the position to be out of scene.
 
+        gameObject.GetComponentInParent<NodeInfo>().transform.eulerAngles = new Vector3(0, 0, 0);
+        gameObject.GetComponentInParent<NodeInfo>().MoveLocation();
         transform.eulerAngles = new Vector3(0, 0, 0);
-        //StartCoroutine(FixRotation(0.1f));
 
-        GameObject[] TouchSearch = GameObject.FindGameObjectsWithTag("Option");
-        for (int i = 0; i < TouchSearch.Length; i++)
+        br.UpdateBranch(id, storyId, gameObject.GetComponentInParent<NodeInfo>().location, block, gameObject, Twin);
+
+        if(id == 1)
         {
-            if (TouchSearch[i].GetComponent<TouchObject>().storyId == storyId)
-            {
-                if (TouchSearch[i].GetComponent<TouchObject>().id == 1)
-                {
-                    GetComponent<WarpText>().UpdateText(br.opt1);
-                }
-                else if (TouchSearch[i].GetComponent<TouchObject>().id == 2)
-                {
-                    GetComponent<WarpText>().UpdateText(br.opt2);
-                }
-            }
+            transform.eulerAngles = new Vector3(0, 180, 0);
         }
-
-        StartCoroutine(FixRotation(0.1f));
-
-        //gameObject.SetActive(true);
+        else
+        {
+            transform.eulerAngles = new Vector3(0, 0, 0);
+        }
     }
 
     IEnumerator WaitForAudio(float waitTime)
     {
         yield return new WaitForSeconds(waitTime);
         gameObject.GetComponentInParent<NodeInfo>().play = true;
-        //gameObject.SetActive(true);
     }
 
     IEnumerator FixRotation(float waitTime)
@@ -97,14 +94,23 @@ public class TouchObject : MonoBehaviour
         if (id == 1)
         {
             // transform.rotation = Quaternion.Euler(0, 180, 0);
-            transform.eulerAngles = new Vector3(0, 180, 0); //new Vector3(transform.eulerAngles.x, transform.eulerAngles.y + 180, transform.eulerAngles.z);    
+            transform.eulerAngles = new Vector3(0, 180, 0);
+            Twin.transform.eulerAngles = new Vector3(0, 0, 0);
         }
         else
         {
             transform.eulerAngles = new Vector3(0, 0, 0);
+            Vector3 store = new Vector3(0, 0, 0);
+            if(Twin.transform.eulerAngles == store)
+            {
+                Twin.transform.eulerAngles = new Vector3(0, 180, 0);
+            }
+            else
+            {
+                Twin.transform.eulerAngles = new Vector3(0, 0, 0);
+            }
+            
         }
-
-        gameObject.GetComponentInParent<NodeInfo>().play = true;
         //StartCoroutine(WaitForAudio(1.0f));
     }
 
@@ -147,9 +153,6 @@ public class TouchObject : MonoBehaviour
             Debug.Log("Touched box");
 
             select = true;
-           
-            //rend.material = result;
-            // play animtion?
         }
     }
 
