@@ -97,10 +97,14 @@ public class TouchObject : MonoBehaviour
         if (id == 1)
         {
             // transform.rotation = Quaternion.Euler(0, 180, 0);
-            transform.eulerAngles = new Vector3(0, 180, 0); //new Vector3(transform.eulerAngles.x, transform.eulerAngles.y + 180, transform.eulerAngles.z);
-            gameObject.GetComponentInParent<NodeInfo>().play = true;
+            transform.eulerAngles = new Vector3(0, 180, 0); //new Vector3(transform.eulerAngles.x, transform.eulerAngles.y + 180, transform.eulerAngles.z);    
+        }
+        else
+        {
+            transform.eulerAngles = new Vector3(0, 0, 0);
         }
 
+        gameObject.GetComponentInParent<NodeInfo>().play = true;
         //StartCoroutine(WaitForAudio(1.0f));
     }
 

@@ -9,6 +9,11 @@ public class NodeInfo : MonoBehaviour
 
     private void Update()
     {
+        if (!play)
+        {
+            transform.eulerAngles = new Vector3(0, 0, 0);
+        }
+
         if (play)
         {
             transform.Rotate(Vector3.up * 20f * Time.deltaTime);
