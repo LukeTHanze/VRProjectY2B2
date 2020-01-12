@@ -15,13 +15,13 @@ MonoBehaviour:
   storyID: 3
   branchID: 0
   nestedBranchID: 0
-  audio: {fileID: 0}
-  parallax: {fileID: 0}
-  isInteractable: 1
+  audio: {fileID: 8300000, guid: 2370b34e391271445ac19e7708167d9e, type: 3}
+  parallax: {fileID: 21300000, guid: 1ce251237dce6094e9d366efb498519a, type: 3}
   option1: another test
   resultOption1: {fileID: 0}
   option2: test again
   resultOption2: {fileID: 0}
   resultTimer: {fileID: 0}
+  StartInvestigation: 0
   KillHere: 0
   endStatement: {fileID: 0}

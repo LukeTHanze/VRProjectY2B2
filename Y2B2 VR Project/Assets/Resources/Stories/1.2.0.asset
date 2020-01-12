@@ -16,12 +16,12 @@ MonoBehaviour:
   branchID: 2
   nestedBranchID: 0
   audio: {fileID: 0}
-  parallax: {fileID: 0}
-  isInteractable: 1
+  parallax: {fileID: 21300000, guid: 1ce251237dce6094e9d366efb498519a, type: 3}
   option1: testing
   resultOption1: {fileID: 0}
   option2: testing
   resultOption2: {fileID: 0}
   resultTimer: {fileID: 0}
+  StartInvestigation: 0
   KillHere: 0
   endStatement: {fileID: 0}

@@ -13,10 +13,9 @@ public class Stories : ScriptableObject
 
     [Header("Foundation")]
     public AudioClip audio; // AudioClip
-    public Image parallax; // or animation? depending on how we want to do it.
+    public Sprite parallax; // or animation? depending on how we want to do it.
 
     [Header("Interactables")]
-    public bool isInteractable = true;
     public string option1;
     public Stories resultOption1;
 
@@ -26,6 +25,7 @@ public class Stories : ScriptableObject
     public Stories resultTimer; // time-out option
 
     [Header("Kill Branch")]
+    public bool StartInvestigation;
     public bool KillHere;
     public AudioClip endStatement;
 

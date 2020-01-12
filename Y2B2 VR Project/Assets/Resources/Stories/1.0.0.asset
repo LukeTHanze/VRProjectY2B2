@@ -16,12 +16,12 @@ MonoBehaviour:
   branchID: 0
   nestedBranchID: 0
   audio: {fileID: 0}
-  parallax: {fileID: 0}
-  isInteractable: 1
+  parallax: {fileID: 21300000, guid: 1ce251237dce6094e9d366efb498519a, type: 3}
   option1: Put The Girl In Jail
   resultOption1: {fileID: 11400000, guid: 7b7f6c8078eddda44a8e693e6c2fe724, type: 2}
   option2: Return The Food
   resultOption2: {fileID: 11400000, guid: 2f8e6f8491730d144a62c378d68973ed, type: 2}
   resultTimer: {fileID: 0}
+  StartInvestigation: 0
   KillHere: 0
   endStatement: {fileID: 0}

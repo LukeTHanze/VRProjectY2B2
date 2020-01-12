@@ -50,6 +50,7 @@ public class NodeInfo : MonoBehaviour
     {
         play = false;
         transform.position = new Vector3(-20, 0, 1);
+        gameObject.GetComponentInParent<Holder>().trigger = true;
     }
 
     public void Respawn()
