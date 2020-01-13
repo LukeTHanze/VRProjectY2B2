@@ -77,7 +77,7 @@ Material:
     - _BumpScale: 1
     - _BumpStrength: 1.37
     - _Clip: 0.4
-    - _ColorVariation: 0.141
+    - _ColorVariation: 0.15
     - _CullMode: 0
     - _CullModeForward: 0
     - _CustomLightIntensity: 3
@@ -98,7 +98,7 @@ Material:
     - _GlossinessVariance: 0
     - _GlossyReflections: 0
     - _Hello: 2
-    - _Hue: 0
+    - _Hue: -0.031
     - _Int2: 0
     - _Leaftype: 0
     - _LightIntensity: 1
@@ -147,7 +147,7 @@ Material:
     - _TransparentSortPriority: 0
     - _UVSec: 0
     - _UseShadowThreshold: 0
-    - _Value: 0.5
+    - _Value: 1.35
     - _WindMode: 1
     - _WindStrength: 0.1
     - _ZTestDepthEqualForOpaque: 3
