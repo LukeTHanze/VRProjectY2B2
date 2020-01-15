@@ -13,6 +13,7 @@ public class TouchObject : MonoBehaviour
     public int id;
     public int storyId;
     public GameObject Twin;
+    public AudioSource audios;
 
     [Header("Renderer Options")]
     public Renderer rend;
@@ -26,6 +27,7 @@ public class TouchObject : MonoBehaviour
     //private int location = 1;
     private bool started;
     private int block = 0;
+    private int block2 = 0;
 
     private void Start()
     {
@@ -69,7 +71,7 @@ public class TouchObject : MonoBehaviour
         gameObject.GetComponentInParent<NodeInfo>().MoveLocation();
         transform.eulerAngles = new Vector3(0, 0, 0);
 
-        br.UpdateBranch(id, storyId, gameObject.GetComponentInParent<NodeInfo>().location, block, gameObject, Twin);
+        br.UpdateBranch(id, storyId, gameObject.GetComponentInParent<NodeInfo>().location, block, block2, gameObject, Twin, audios);
 
         if(id == 1)
         {

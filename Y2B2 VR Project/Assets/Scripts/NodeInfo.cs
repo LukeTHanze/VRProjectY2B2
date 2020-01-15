@@ -55,6 +55,7 @@ public class NodeInfo : MonoBehaviour
 
     public void Respawn()
     {
+        gameObject.GetComponentInParent<Holder>().UpdateClip();
         transform.position = spawn;
         play = true;
     }

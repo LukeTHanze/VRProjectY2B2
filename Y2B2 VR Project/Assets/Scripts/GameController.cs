@@ -20,10 +20,8 @@ public class GameController : MonoBehaviour
     public int whatBranch = 1;
     public int storiesRemaining;
 
+    public bool InvestigationStarted;
 
-    // for setting up the options as 3d objects
-    public GameObject opt1Obj_1;
-    public GameObject opt2Obj_1;
 
     /*
      
@@ -121,17 +119,6 @@ public class GameController : MonoBehaviour
 
     public void RefreshUI(Stories story, int id)
     {
-        switch (id)
-        {
-            case 0:
-               /* opt1Obj_1.GetComponent<WarpText>().UpdateText = story.option1;
-                option2_1.text = story.option2;
-                storyID1.text = "ID: " + story.storyID + "." + story.branchID + "." + story.nestedBranchID;*/
-                break;
-            default:
-                break;
-        }
-        
                 /*
                 // Canvas Version
                 switch (id)

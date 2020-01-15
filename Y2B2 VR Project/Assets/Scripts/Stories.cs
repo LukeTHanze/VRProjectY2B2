@@ -10,6 +10,7 @@ public class Stories : ScriptableObject
     public int storyID; // isnt required, only used if we need to check for a particular story
     public int branchID;
     public int nestedBranchID;
+    public int finalID;
 
     [Header("Foundation")]
     public AudioClip audio; // AudioClip
@@ -17,17 +18,20 @@ public class Stories : ScriptableObject
 
     [Header("Interactables")]
     public string option1;
-    public Stories resultOption1;
+    public AudioClip answer1;
 
     public string option2;
-    public Stories resultOption2;
+    public AudioClip answer2;
 
-    public Stories resultTimer; // time-out option
-
-    [Header("Kill Branch")]
+    [Header("Investigation")]
     public bool StartInvestigation;
+    public int[] SI;
+    public bool IsPart2;
+
+    [Header("Kill Branch 1")]
     public bool KillHere;
-    public AudioClip endStatement;
+    public int[] KillAt;
+
 
 }
 

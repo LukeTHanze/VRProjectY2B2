@@ -1,0 +1,29 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 02b4e6a62a7492949a64e52455874303, type: 3}
+  m_Name: 4.2.1
+  m_EditorClassIdentifier: 
+  storyID: 4
+  branchID: 2
+  nestedBranchID: 1
+  finalID: 0
+  audio: {fileID: 8300000, guid: 0ba9f82b74d3fe5488c88fc44da8b343, type: 3}
+  parallax: {fileID: 0}
+  option1: Imprison James
+  answer1: {fileID: 8300000, guid: 677cc44f6804c0749b20c28fba7c8e61, type: 3}
+  option2: Isolate James
+  answer2: {fileID: 8300000, guid: bcc67ef371bae5149b52f4e7fd36ecba, type: 3}
+  StartInvestigation: 1
+  SI: 0100000002000000
+  IsPart2: 0
+  KillHere: 1
+  KillAt: 03000000

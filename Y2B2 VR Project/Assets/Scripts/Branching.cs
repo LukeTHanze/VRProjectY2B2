@@ -42,7 +42,7 @@ public class Branching : MonoBehaviour
     public  List<Stories> storedBranch = new List<Stories>();
     //public Stories[] newBranch = { null, null, null, null };
     public int accessed;
-    public int result;
+    public int result, result2;
 
     GameController gm;
     
@@ -111,7 +111,7 @@ public class Branching : MonoBehaviour
         }
     }
 
-    public void UpdateBranch(int id, int branch, int location, int block, GameObject main, GameObject twin)
+    public void UpdateBranch(int id, int branch, int location, int block, int block2, GameObject main, GameObject twin, AudioSource audios)
     {
         for(int i = 0; i < currentBranch.Count; i++)
         {
@@ -127,13 +127,15 @@ public class Branching : MonoBehaviour
                     {
                         foreach (Stories story in stories)
                         {
-                            if (story.storyID == branch && story.branchID == id && story.nestedBranchID == 0)
+                            if (story.storyID == branch && story.branchID == id && story.nestedBranchID == 0 && story.finalID == 0)
                             {
                                 Debug.Log("story updated");
                                 storedBranch.Add(story);
 
                                 main.GetComponent<WarpText>().UpdateText(story.option1);
                                 twin.GetComponent<WarpText>().UpdateText(story.option2);
+
+                                audios.clip = story.audio;
 
                                 result = 1;
                                 accessed = location++;
@@ -144,13 +146,15 @@ public class Branching : MonoBehaviour
                     {
                         foreach (Stories story in stories)
                         {
-                            if (story.storyID == branch && story.branchID == id && story.nestedBranchID == 0)
+                            if (story.storyID == branch && story.branchID == id && story.nestedBranchID == 0 && story.finalID == 0)
                             {
                                 Debug.Log("story updated");
                                 storedBranch.Add(story);
 
                                 main.GetComponent<WarpText>().UpdateText(story.option2);
                                 twin.GetComponent<WarpText>().UpdateText(story.option1);
+
+                                audios.clip = story.audio;
 
                                 result = 2;
                                 accessed = location++;
@@ -165,15 +169,18 @@ public class Branching : MonoBehaviour
                     {
                         foreach (Stories story in stories)
                         {
-                            if (story.storyID == branch && story.branchID == block && story.nestedBranchID == id)
+                            if (story.storyID == branch && story.branchID == block && story.nestedBranchID == id && story.finalID == 0)
                             {
                                 Debug.Log("story updated");
                                 storedBranch.Add(story);
 
                                 main.GetComponent<WarpText>().UpdateText(story.option1);
-                                twin.GetComponent<WarpText>().UpdateText(story.option1);
+                                twin.GetComponent<WarpText>().UpdateText(story.option2);
+
+                                audios.clip = story.audio;
 
                                 result = 1;
+                                
                                 accessed = location++;
                             }
                         }
@@ -182,13 +189,15 @@ public class Branching : MonoBehaviour
                     {
                         foreach (Stories story in stories)
                         {
-                            if (story.storyID == branch && story.branchID == block && story.nestedBranchID == id)
+                            if (story.storyID == branch && story.branchID == block && story.nestedBranchID == id && story.finalID == 0)
                             {
                                 Debug.Log("story updated");
                                 storedBranch.Add(story);
 
-                                main.GetComponent<WarpText>().UpdateText(story.option1);
+                                main.GetComponent<WarpText>().UpdateText(story.option2);
                                 twin.GetComponent<WarpText>().UpdateText(story.option1);
+
+                                audios.clip = story.audio;
 
                                 result = 2;
                                 accessed = location++;
@@ -199,20 +208,22 @@ public class Branching : MonoBehaviour
                 }
                 else if(location == 3)
                 {
-                    // end
                     if (id == 1)
                     {
                         foreach (Stories story in stories)
                         {
-                            if (story.storyID == branch && story.branchID == block && story.nestedBranchID == id)
+                            if (story.storyID == branch && story.branchID == block && story.nestedBranchID == id && story.finalID == 0)
                             {
                                 Debug.Log("story updated");
                                 storedBranch.Add(story);
 
-                                main.GetComponent<WarpText>().UpdateText("end");
-                                twin.GetComponent<WarpText>().UpdateText("end");
+                                main.GetComponent<WarpText>().UpdateText(story.option1);
+                                twin.GetComponent<WarpText>().UpdateText(story.option2);
+
+                                audios.clip = story.audio;
 
                                 result = 1;
+                                result2 = 1;
                                 accessed = location++;
                             }
                         }
@@ -221,15 +232,61 @@ public class Branching : MonoBehaviour
                     {
                         foreach (Stories story in stories)
                         {
-                            if (story.storyID == branch && story.branchID == block && story.nestedBranchID == id)
+                            if (story.storyID == branch && story.branchID == block && story.nestedBranchID == id && story.finalID == 0)
                             {
                                 Debug.Log("story updated");
                                 storedBranch.Add(story);
 
-                                main.GetComponent<WarpText>().UpdateText("end");
-                                twin.GetComponent<WarpText>().UpdateText("end");
+                                main.GetComponent<WarpText>().UpdateText(story.option2);
+                                twin.GetComponent<WarpText>().UpdateText(story.option1);
+
+                                audios.clip = story.audio;
 
                                 result = 2;
+                                result2 = 2;
+                                accessed = location++;
+                            }
+                        }
+                    }
+                }
+                else if (location == 4)
+                {
+                    if (id == 1)
+                    {
+                        foreach (Stories story in stories)
+                        {
+                            if (story.storyID == branch && story.branchID == block && story.nestedBranchID == block2 && story.finalID == id)
+                            {
+                                Debug.Log("story updated");
+                                storedBranch.Add(story);
+
+                                main.GetComponent<WarpText>().UpdateText(story.option1);
+                                twin.GetComponent<WarpText>().UpdateText(story.option2);
+
+                                audios.clip = story.audio;
+
+                                result = 1;
+                                result2 = 1;
+                                accessed = location++;
+                            }
+                        }
+                    }
+                    else if (id == 2)
+                    {
+                        foreach (Stories story in stories)
+                        {
+                            if (story.storyID == branch && story.branchID == block && story.nestedBranchID == block2 && story.finalID == id)
+                            {
+                                Debug.Log("story updated");
+                                storedBranch.Add(story);
+
+                                main.GetComponent<WarpText>().UpdateText(story.option2);
+                                twin.GetComponent<WarpText>().UpdateText(story.option1);
+
+                                audios.clip = story.audio;
+
+                                result = 2;
+                                result2 = 2;
                                 accessed = location++;
                             }
                         }
@@ -239,15 +296,19 @@ public class Branching : MonoBehaviour
                 {
                     foreach (Stories story in stories)
                     {
-                        if (story.storyID == branch && story.branchID == block && story.nestedBranchID == id)
+                        if (story.storyID == branch && story.branchID == block && story.nestedBranchID == block2 && story.finalID == id)
                         {
                             Debug.Log("story updated");
                             storedBranch.Add(story);
 
-                            main.GetComponent<WarpText>().UpdateText("end");
-                            twin.GetComponent<WarpText>().UpdateText("end");
+                            main.GetComponent<WarpText>().UpdateText("< end >");
+                            twin.GetComponent<WarpText>().UpdateText("< end >");
 
-                            result = 2;
+                            audios.clip = story.audio;
+
+                            result = 0;
+                            result2 = 0;
+                            
                             accessed = location++;
                         }
                     }

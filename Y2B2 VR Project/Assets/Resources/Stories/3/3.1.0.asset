@@ -1,0 +1,29 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 02b4e6a62a7492949a64e52455874303, type: 3}
+  m_Name: 3.1.0
+  m_EditorClassIdentifier: 
+  storyID: 3
+  branchID: 1
+  nestedBranchID: 0
+  finalID: 0
+  audio: {fileID: 8300000, guid: ef58064b05f50b74c8d0147a40c56014, type: 3}
+  parallax: {fileID: 21300000, guid: fd6180c4e00780141b70c0a31cf7dac4, type: 3}
+  option1: Save The Twins
+  answer1: {fileID: 8300000, guid: 9fdd9be3a0a405042a307662dcc50822, type: 3}
+  option2: Fake Clues
+  answer2: {fileID: 8300000, guid: 8ca62c68a4f62bd46b872975451b57d9, type: 3}
+  StartInvestigation: 1
+  SI: 0100000003000000
+  IsPart2: 0
+  KillHere: 0
+  KillAt: 

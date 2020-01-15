@@ -1,0 +1,29 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 02b4e6a62a7492949a64e52455874303, type: 3}
+  m_Name: 2.1.0
+  m_EditorClassIdentifier: 
+  storyID: 2
+  branchID: 1
+  nestedBranchID: 0
+  finalID: 0
+  audio: {fileID: 8300000, guid: e43bdb0db9c235b41a74f38c88f9febc, type: 3}
+  parallax: {fileID: 0}
+  option1: Show Them The Way
+  answer1: {fileID: 0}
+  option2: Remove The Paragon
+  answer2: {fileID: 8300000, guid: 8c1d77fbca73c6943a3137c210f3de68, type: 3}
+  StartInvestigation: 0
+  SI: 
+  IsPart2: 1
+  KillHere: 1
+  KillAt: 010000000200000003000000

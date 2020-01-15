@@ -4,11 +4,12 @@ using UnityEngine;
 
 public class Holder : MonoBehaviour
 {
-    // public AudioClip clip;
+    public AudioSource dj;
+    public AudioClip aclip;
+
     public float clip; // stand-in
     public float clipTime;
 
-    //public float extraTime;
     float startTime;
 
     public bool trigger;
@@ -20,24 +21,28 @@ public class Holder : MonoBehaviour
     void Start()
     {
         br = GameObject.FindGameObjectWithTag("GameController").GetComponent<Branching>();
-        clip = clipTime;
+        dj = gameObject.GetComponentInChildren<AudioSource>();
+        aclip = dj.clip;
+        Debug.Log("Audio Time: " + aclip.length);
+        clip = aclip.length;
     }
 
-    // Update is called once per frame
     void Update()
     {
-        /*
-        if(clip.length + extraTime <= 0)
+
+        if (clip <= 0)
         {
-            // hide
-
-            // random time to appear again
             startTime = Random.RandomRange(2f, 15f);
-            
+            StartCoroutine(Respawn(startTime));
+            Debug.Log("AUDIO CLIP ENDED! w/" + startTime);
+            trigger = false;
+        }
+        else
+        {
+            clip -= Time.deltaTime;
+        }
 
-
-        }    */
-
+        /*
         if (trigger)
         {
             if (clip <= 0)
@@ -51,7 +56,7 @@ public class Holder : MonoBehaviour
             {
                 clip -= Time.deltaTime;
             }
-        }
+        }*/
 
     }
     
@@ -59,5 +64,21 @@ public class Holder : MonoBehaviour
     {
         yield return new WaitForSeconds(waitTime);
         gameObject.GetComponentInChildren<NodeInfo>().Respawn();
+    }
+
+    public void UpdateClip()
+    {
+        if(dj.clip != null)
+        {
+            aclip = dj.clip;
+
+            Debug.Log("Audio Time: " + aclip.length);
+            clip = aclip.length;
+        }
+        else
+        {
+            Debug.Log("E M P T Y  A U D I O  L O G");
+        }
+        
     }
 }
