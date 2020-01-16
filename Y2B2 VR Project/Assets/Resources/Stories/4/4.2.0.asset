@@ -19,7 +19,7 @@ MonoBehaviour:
   audio: {fileID: 8300000, guid: 6496155a63fcc7c4d98831a6d6681631, type: 3}
   parallax: {fileID: 0}
   option1: Focus On Training
-  answer1: {fileID: 0}
+  answer1: {fileID: 8300000, guid: a1b83375c52c7e6419c5c8547f182bb5, type: 3}
   option2: Let James Draw
   answer2: {fileID: 8300000, guid: 04f0093234eaace4ca0f60113afc97cf, type: 3}
   StartInvestigation: 0

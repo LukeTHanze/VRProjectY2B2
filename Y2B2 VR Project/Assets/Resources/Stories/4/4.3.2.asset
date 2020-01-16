@@ -21,7 +21,7 @@ MonoBehaviour:
   option1: Focus On Inventions
   answer1: {fileID: 8300000, guid: ea8e1769696265f4e9542c2dd4188a18, type: 3}
   option2: Make Him A Scholar
-  answer2: {fileID: 0}
+  answer2: {fileID: 8300000, guid: e4f866545250d8e45b6a3937f6959db6, type: 3}
   StartInvestigation: 1
   SI: 02000000
   IsPart2: 0
