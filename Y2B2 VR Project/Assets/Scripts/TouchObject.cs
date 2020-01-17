@@ -13,6 +13,7 @@ public class TouchObject : MonoBehaviour
     public int id;
     public int storyId;
     public GameObject Twin;
+    public GameObject hParent;
     public AudioSource audios;
 
     [Header("Renderer Options")]
@@ -26,8 +27,8 @@ public class TouchObject : MonoBehaviour
     private Branching br;
     //private int location = 1;
     private bool started;
-    private int block = 0;
-    private int block2 = 0;
+    public int block = 0;
+    public int block2 = 0;
 
     private void Start()
     {
@@ -52,10 +53,13 @@ public class TouchObject : MonoBehaviour
             WaitForWake();
 
             gameObject.GetComponentInParent<NodeInfo>().location++;
+            gameObject.GetComponentInParent<NodeInfo>().GetComponentInParent<Holder>().selected = true;
             br.accessed = 0;
 
             block = br.result;
             br.result = 0;
+
+            gameObject.GetComponentInParent<NodeInfo>().GetComponentInParent<Holder>().UpdateClip();
 
             StartCoroutine(FixRotation(0.1f));
 
@@ -71,8 +75,7 @@ public class TouchObject : MonoBehaviour
         gameObject.GetComponentInParent<NodeInfo>().MoveLocation();
         transform.eulerAngles = new Vector3(0, 0, 0);
 
-        br.UpdateBranch(id, storyId, gameObject.GetComponentInParent<NodeInfo>().location, block, block2, gameObject, Twin, audios);
-
+        br.UpdateBranch(id, storyId, gameObject.GetComponentInParent<NodeInfo>().location, block, block2, gameObject, Twin, audios, hParent, hParent.GetComponent<Holder>().stored);
         if(id == 1)
         {
             transform.eulerAngles = new Vector3(0, 180, 0);

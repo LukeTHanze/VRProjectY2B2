@@ -111,17 +111,14 @@ public class Branching : MonoBehaviour
         }
     }
 
-    public void UpdateBranch(int id, int branch, int location, int block, int block2, GameObject main, GameObject twin, AudioSource audios)
+    public void UpdateBranch(int id, int branch, int location, int block, int block2, GameObject main, GameObject twin, AudioSource audios, GameObject holder, Stories storedStory)
     {
         for(int i = 0; i < currentBranch.Count; i++)
         {
             if(currentBranch[i].storyID == branch)
             {
-                if(location == 1)
-                {
-                    // start
-                    Debug.Log("Location: 1 = " + location);
-
+                if (location == 1)
+                { 
                     // set X.[Y].0
                     if (id == 1)
                     {
@@ -129,9 +126,10 @@ public class Branching : MonoBehaviour
                         {
                             if (story.storyID == branch && story.branchID == id && story.nestedBranchID == 0 && story.finalID == 0)
                             {
+                                holder.GetComponent<Holder>().AnswerPlay(storedStory.answer1);
                                 Debug.Log("story updated");
-                                storedBranch.Add(story);
-
+                                holder.GetComponent<Holder>().stored = story;
+                                holder.GetComponent<Holder>().test = true;
                                 main.GetComponent<WarpText>().UpdateText(story.option1);
                                 twin.GetComponent<WarpText>().UpdateText(story.option2);
 
@@ -146,10 +144,21 @@ public class Branching : MonoBehaviour
                     {
                         foreach (Stories story in stories)
                         {
+                            
+
                             if (story.storyID == branch && story.branchID == id && story.nestedBranchID == 0 && story.finalID == 0)
                             {
+                                GameObject[] ObjList = GameObject.FindGameObjectsWithTag("CHolder");
+                                for (int x = 0; x < ObjList.Length; x++)
+                                {
+                                    if(ObjList[x] == holder)
+                                    {
+                                        Debug.Log("UWU");
+                                    }
+                                }
+                                holder.GetComponent<Holder>().AnswerPlay(storedStory.answer1);
                                 Debug.Log("story updated");
-                                storedBranch.Add(story);
+                                holder.GetComponent<Holder>().stored = story;
 
                                 main.GetComponent<WarpText>().UpdateText(story.option2);
                                 twin.GetComponent<WarpText>().UpdateText(story.option1);
@@ -161,7 +170,39 @@ public class Branching : MonoBehaviour
                             }
                         }
                     }
-                    
+                    else if (id == 3)
+                    {
+                        foreach (Stories story in stories)
+                        {
+                            if (story.storyID == branch && story.branchID == id && story.nestedBranchID == 0 && story.finalID == 0)
+                            {
+                                Debug.Log("story updated");
+                                storedBranch.Add(story);
+
+                                main.GetComponent<WarpText>().UpdateText(story.option2);
+                                twin.GetComponent<WarpText>().UpdateText(story.option1);
+
+                                audios.clip = story.audio;
+
+                                result = 3;
+                                accessed = location++;
+                            }
+                            else if(story.storyID == branch && story.branchID == 0 && story.nestedBranchID == 0 && story.finalID == 0)
+                            {
+                                if (story.KillHere)
+                                {
+                                    for (int j = 0;j < story.KillAt.Length;j++)
+                                    {
+                                        if(story.KillAt[j] == 3)
+                                        {
+                                            // kill clip
+                                            
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
                 }
                 else if(location == 2)
                 {
