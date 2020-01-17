@@ -12,16 +12,15 @@ public class Holder : MonoBehaviour
     public Stories stored;
 
     public float clip; // stand-in
-    public float clipTime;
+    public float ansTime;
 
     float startTime;
 
     public bool trigger;
     public bool selected;
+    private bool uwu;
 
     public AudioClip queuedAudio = null;
-    private float newClip;
-    private bool startAudio;
 
     private Branching br;
 
@@ -49,62 +48,89 @@ public class Holder : MonoBehaviour
     {
         if (trigger)
         {
-            if (clip <= 0 && dj.clip != null)
+            if (clip <= 0 && dj.clip != null && !selected)
             {
                 trigger = false;
                 if (!selected)
                 {
-                    int storyId = gameObject.GetComponentInChildren<NodeInfo>().gameObject.GetComponentInChildren<TouchObject>().storyId;
-                    int location = gameObject.GetComponentInChildren<NodeInfo>().location;
-                    int block = gameObject.GetComponentInChildren<NodeInfo>().GetComponentInChildren<TouchObject>().block;
-                    int block2 = gameObject.GetComponentInChildren<NodeInfo>().GetComponentInChildren<TouchObject>().block2;
-                    br.UpdateBranch(3, storyId, location, block, block2, opt1, opt2, dj, gameObject, stored);
+                    br.UpdateBranches(3, stored, gameObject);
                 }
                 startTime = Random.RandomRange(2f, 15f);
                 StartCoroutine(Respawn(startTime));
                 Debug.Log("AUDIO CLIP ENDED! w/" + startTime);
-                startAudio = false;
-                queuedAudio = null;
             }
-            else
+            else if (selected && queuedAudio != null)
+            {
+                if(ansTime <= 0)
+                {
+                    trigger = false;
+                    startTime = Random.RandomRange(2f, 15f);
+                    dj.Stop();
+                    StartCoroutine(Respawn(startTime));
+                }
+                else
+                {
+                    ansTime -= Time.deltaTime;
+                }
+
+                if (!dj.isPlaying && !uwu)
+                {
+                    ansTime = dj.clip.length;
+                    dj.Play();
+                    uwu = true;
+                }
+
+            }
+            else if(!selected)
             {
                 clip -= Time.deltaTime;
             }
+        }
+
+        if (test)
+        {
+            dj.Play();
+            test = false;
         }
     }
     
     IEnumerator Respawn(float waitTime)
     {
         yield return new WaitForSeconds(waitTime);
+        queuedAudio = null;
         gameObject.GetComponentInChildren<NodeInfo>().Respawn();
     }
 
     public void AnswerPlay(AudioClip answer)
     {
         Debug.Log("Answer Audio Clip");
+        uwu = false;
         queuedAudio = answer;
         dj.Stop();
         dj.clip = answer;
-        clip = answer.length;
-        dj.Play();
+        ansTime = dj.clip.length;
     }
 
     public void UpdateClip()
     {
-        if(dj.clip != null)
-        {
-            aclip = dj.clip;
+        Debug.Log("Updated Clip");
+        Debug.Log("New Audio Time: " + dj.clip.length);
+        dj.clip = stored.audio;
+        clip = dj.clip.length;
 
-            Debug.Log("Updated Clip");
-            Debug.Log("Audio Time: " + aclip.length);
-            clip = aclip.length;
+        dj.Play();
 
-            trigger = true;
-            selected = false;
-        }
-        else
-        {
-            Debug.Log("E M P T Y  A U D I O  L O G");
-        }   
+        selected = false;
+        trigger = true;
+    }
+
+    public void CallBranch(int id)
+    {
+        br.UpdateBranches(id, stored, gameObject);
+    }
+
+    public void UpdateBlock()
+    {
+       // dj.clip = stored.audio;
     }
 }

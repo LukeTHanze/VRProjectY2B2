@@ -34,12 +34,6 @@ public class NodeInfo : MonoBehaviour
             transform.Rotate(Vector3.up * 20f * Time.deltaTime);
         }
 
-        if (test)
-        {
-            Respawn();
-            test = false;
-        }
-
         if(location > 4)
         {
             location = 4;

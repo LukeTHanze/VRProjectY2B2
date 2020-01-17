@@ -59,8 +59,6 @@ public class TouchObject : MonoBehaviour
             block = br.result;
             br.result = 0;
 
-            gameObject.GetComponentInParent<NodeInfo>().GetComponentInParent<Holder>().UpdateClip();
-
             StartCoroutine(FixRotation(0.1f));
 
             select = false;
@@ -75,8 +73,9 @@ public class TouchObject : MonoBehaviour
         gameObject.GetComponentInParent<NodeInfo>().MoveLocation();
         transform.eulerAngles = new Vector3(0, 0, 0);
 
-        br.UpdateBranch(id, storyId, gameObject.GetComponentInParent<NodeInfo>().location, block, block2, gameObject, Twin, audios, hParent, hParent.GetComponent<Holder>().stored);
-        if(id == 1)
+        //br.UpdateBranch(id, storyId, gameObject.GetComponentInParent<NodeInfo>().location, block, block2, gameObject, Twin, audios, hParent, hParent.GetComponent<Holder>().stored);
+        gameObject.GetComponentInParent<NodeInfo>().GetComponentInParent<Holder>().CallBranch(id);
+        if (id == 1)
         {
             transform.eulerAngles = new Vector3(0, 180, 0);
         }

@@ -19,9 +19,11 @@ public class Stories : ScriptableObject
     [Header("Interactables")]
     public string option1;
     public AudioClip answer1;
+    public Stories link1;
 
     public string option2;
     public AudioClip answer2;
+    public Stories link2;
 
     [Header("Investigation")]
     public bool StartInvestigation;

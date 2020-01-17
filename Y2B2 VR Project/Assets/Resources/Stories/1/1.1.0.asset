@@ -20,8 +20,10 @@ MonoBehaviour:
   parallax: {fileID: 21300000, guid: 1ce251237dce6094e9d366efb498519a, type: 3}
   option1: End Sentence
   answer1: {fileID: 8300000, guid: c5a560ea788263143932aa40c81dbb29, type: 3}
+  link1: {fileID: 11400000, guid: f616be4de419b0c428bdf1b00a95dfc1, type: 2}
   option2: Reeducate Her
   answer2: {fileID: 8300000, guid: d0723d9f2137de74193023530e826b59, type: 3}
+  link2: {fileID: 0}
   StartInvestigation: 1
   SI: 02000000
   IsPart2: 0
