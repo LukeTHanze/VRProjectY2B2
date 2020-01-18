@@ -35,6 +35,7 @@ public class Holder : MonoBehaviour
         dj = gameObject.GetComponentInChildren<AudioSource>();
         UpdateClip();
 
+        Debug.Log("Playing");
         dj.Play();
 
         /*

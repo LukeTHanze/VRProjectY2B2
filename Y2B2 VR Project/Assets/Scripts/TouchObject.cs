@@ -13,7 +13,6 @@ public class TouchObject : MonoBehaviour
     public int id;
     public int storyId;
     public GameObject Twin;
-    public GameObject hParent;
     public AudioSource audios;
 
     [Header("Renderer Options")]

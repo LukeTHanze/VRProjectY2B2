@@ -15,7 +15,7 @@ public class WarpText : MonoBehaviour
      * - Font size needs to be changed within a textmeshpro prefab
      * 
      */
-
+    [Header("Attributes")]
     public string RoundText = "";
     public float Radius;
     public GameObject TextMeshPrefab;
@@ -90,7 +90,7 @@ public class WarpText : MonoBehaviour
     Vector3 RandomCircle(Vector3 center, float radius, float ang)
     {
         Vector3 pos;
-        pos.x = center.x + radius * Mathf.Sin(ang * Mathf.Deg2Rad);
+        pos.x = center.x + (radius) * Mathf.Sin(ang * Mathf.Deg2Rad);
         pos.y = center.y;
         pos.z = center.z + radius * Mathf.Cos(ang * Mathf.Deg2Rad);
         return pos;
