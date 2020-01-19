@@ -17,11 +17,14 @@ MonoBehaviour:
   nestedBranchID: 0
   finalID: 0
   audio: {fileID: 8300000, guid: ef58064b05f50b74c8d0147a40c56014, type: 3}
-  parallax: {fileID: 21300000, guid: fd6180c4e00780141b70c0a31cf7dac4, type: 3}
+  mat: {fileID: 2100000, guid: 99249acf609a1844a8458daf9de9984c, type: 2}
   option1: Save The Twins
   answer1: {fileID: 8300000, guid: 9fdd9be3a0a405042a307662dcc50822, type: 3}
+  link1: {fileID: 0}
   option2: Fake Clues
   answer2: {fileID: 8300000, guid: 8ca62c68a4f62bd46b872975451b57d9, type: 3}
+  link2: {fileID: 11400000, guid: f5233261b813b8044a9433f359807108, type: 2}
+  link3: {fileID: 0}
   StartInvestigation: 1
   SI: 0100000003000000
   IsPart2: 0

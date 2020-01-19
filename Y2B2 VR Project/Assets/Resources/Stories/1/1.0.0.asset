@@ -17,13 +17,14 @@ MonoBehaviour:
   nestedBranchID: 0
   finalID: 0
   audio: {fileID: 8300000, guid: 40be05237c9ce9240b64f3da96af0946, type: 3}
-  parallax: {fileID: 21300000, guid: 1ce251237dce6094e9d366efb498519a, type: 3}
+  mat: {fileID: 2100000, guid: ebe10a97f13e75a4cad7744c88a73df3, type: 2}
   option1: Put her in jail
   answer1: {fileID: 8300000, guid: 7e5f7cbadb7d5c64f86781e8d01a70b9, type: 3}
   link1: {fileID: 11400000, guid: 7b7f6c8078eddda44a8e693e6c2fe724, type: 2}
   option2: Deny her food
   answer2: {fileID: 8300000, guid: e8a4edda1c439914cb3782d9a8915fe7, type: 3}
   link2: {fileID: 11400000, guid: 2f8e6f8491730d144a62c378d68973ed, type: 2}
+  link3: {fileID: 0}
   StartInvestigation: 0
   SI: 
   IsPart2: 0

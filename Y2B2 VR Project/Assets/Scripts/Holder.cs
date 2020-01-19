@@ -19,6 +19,7 @@ public class Holder : MonoBehaviour
     public bool trigger;
     public bool selected;
     private bool uwu;
+    private bool toKill;
 
     public AudioClip queuedAudio = null;
 
@@ -26,23 +27,16 @@ public class Holder : MonoBehaviour
 
     [Header("Test")]
     public bool test;
-
-    // br.UpdateBranch(id, storyId, gameObject.GetComponentInParent<NodeInfo>().location, block, gameObject, Twin); // to fill
+    public Stories newStored;
 
     void Start()
     {
         br = GameObject.FindGameObjectWithTag("GameController").GetComponent<Branching>();
         dj = gameObject.GetComponentInChildren<AudioSource>();
+
+        
         UpdateClip();
-
-        Debug.Log("Playing");
         dj.Play();
-
-        /*
-        aclip = dj.clip;
-        Debug.Log("Audio Time: " + aclip.length);
-        clip = aclip.length;
-        */
     }
 
     void Update()
@@ -90,22 +84,36 @@ public class Holder : MonoBehaviour
 
         if (test)
         {
-            dj.Play();
+            stored = newStored;
             test = false;
         }
+
     }
-    
+
+    /*
+    IEnumerator Spawn(float waitTime)
+    {
+        yield return new WaitForSeconds(waitTime);
+        UpdateClip();
+        dj.Play()
+    }*/
+
     IEnumerator Respawn(float waitTime)
     {
         yield return new WaitForSeconds(waitTime);
         queuedAudio = null;
+        if (toKill)
+            Destroy(gameObject);
         gameObject.GetComponentInChildren<NodeInfo>().Respawn();
     }
 
-    public void AnswerPlay(AudioClip answer)
+    public void AnswerPlay(AudioClip answer, bool kill = false)
     {
         Debug.Log("Answer Audio Clip");
         uwu = false;
+        if (kill)
+            toKill = true;
+
         queuedAudio = answer;
         dj.Stop();
         dj.clip = answer;
@@ -116,10 +124,13 @@ public class Holder : MonoBehaviour
     {
         Debug.Log("Updated Clip");
         Debug.Log("New Audio Time: " + dj.clip.length);
-        dj.clip = stored.audio;
-        clip = dj.clip.length;
 
-        dj.Play();
+        if(stored.audio != null)
+        {
+            dj.clip = stored.audio;
+            clip = dj.clip.length;
+            dj.Play();
+        }
 
         selected = false;
         trigger = true;
@@ -127,11 +138,15 @@ public class Holder : MonoBehaviour
 
     public void CallBranch(int id)
     {
-        br.UpdateBranches(id, stored, gameObject);
+        br.UpdateBranches(id, stored, gameObject);     
     }
 
     public void UpdateBlock()
     {
-       // dj.clip = stored.audio;
+        opt1.GetComponent<WarpText>().UpdateText(stored.option1);
+        opt2.GetComponent<WarpText>().UpdateText(stored.option2);
+
+       // gameObject.GetComponentInChildren<MeshRenderer>().materials[0] = stored.mat;
+        // dj.clip = stored.audio;
     }
 }

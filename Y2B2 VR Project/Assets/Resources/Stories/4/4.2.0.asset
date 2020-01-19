@@ -17,11 +17,14 @@ MonoBehaviour:
   nestedBranchID: 0
   finalID: 0
   audio: {fileID: 8300000, guid: 6496155a63fcc7c4d98831a6d6681631, type: 3}
-  parallax: {fileID: 0}
+  mat: {fileID: 2100000, guid: bd0b400b8ded0fc42a19c359650f2215, type: 2}
   option1: Focus On Training
   answer1: {fileID: 8300000, guid: a1b83375c52c7e6419c5c8547f182bb5, type: 3}
+  link1: {fileID: 11400000, guid: 73deea6ca47976241816cb0d1d593ca6, type: 2}
   option2: Let James Draw
   answer2: {fileID: 8300000, guid: 04f0093234eaace4ca0f60113afc97cf, type: 3}
+  link2: {fileID: 11400000, guid: a97e746faa7bec847b4b209725794239, type: 2}
+  link3: {fileID: 11400000, guid: 4ba88118f33609c4897dfd35fae1a0bc, type: 2}
   StartInvestigation: 0
   SI: 
   IsPart2: 0

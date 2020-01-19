@@ -38,6 +38,7 @@ public class Branching : MonoBehaviour
      */
 
     public Stories[] stories;
+    public Stories investigation;
     public List<Stories> currentBranch = new List<Stories>(); // 0 <-> 3 - Displayed Stories // 4 <-> 7 - Stored Stories with canvas version
     public  List<Stories> storedBranch = new List<Stories>();
     //public Stories[] newBranch = { null, null, null, null };
@@ -110,41 +111,12 @@ public class Branching : MonoBehaviour
         }
     }
 
-    /*
-    [Header("Identity")]
-    public int storyID; // isnt required, only used if we need to check for a particular story
-    public int branchID;
-    public int nestedBranchID;
-    public int finalID;
-
-    [Header("Foundation")]
-    public AudioClip audio; // AudioClip
-    public Sprite parallax; // or animation? depending on how we want to do it.
-
-    [Header("Interactables")]
-    public string option1;
-    public AudioClip answer1;
-
-    public string option2;
-    public AudioClip answer2;
-
-    [Header("Investigation")]
-    public bool StartInvestigation;
-    public int[] SI;
-    public bool IsPart2;
-
-    [Header("Kill Branch 1")]
-    public bool KillHere;
-    public int[] KillAt;
-     */
-
     public void UpdateBranches(int id, Stories storedStory, GameObject holder)
     {
         foreach(Stories story in stories)
         {
-            if(story == storedStory)
+            if (story == storedStory)
             {
-                Debug.Log("story = stored");
                 if (!story.KillHere && !story.StartInvestigation)
                 {
                     switch (id)
@@ -162,6 +134,8 @@ public class Branching : MonoBehaviour
                             Debug.Log("Case " + id);
                             break;
                         case 3:
+                            holder.GetComponent<Holder>().stored = story.link3;
+                            holder.GetComponent<Holder>().UpdateBlock();
                             Debug.Log("Case " + id);
                             break;
                         default:
@@ -178,7 +152,6 @@ public class Branching : MonoBehaviour
                             bool breakloop = false;
                             if (!noresult)
                             {
-                                
                                 if (!breakloop)
                                 {
                                     for (int i = 0; i < story.KillAt.Length; i++)
@@ -186,10 +159,23 @@ public class Branching : MonoBehaviour
                                         if (story.KillAt[i] == 1)
                                         {
                                             // kill
-                                            Destroy(holder);
-                                            Debug.Log("Killing");
-                                            breakloop = true;
-                                            break;
+                                            if (!story.IsPart2)
+                                            {
+                                                holder.GetComponent<Holder>().AnswerPlay(story.answer1, true);
+                                                Debug.Log("Killing");
+                                                breakloop = true;
+                                                break;
+                                            }
+                                            else
+                                            {
+                                                // portal 1
+                                                // just spawn ??
+                                                holder.GetComponent<Holder>().AnswerPlay(story.answer1, true);
+
+                                                Debug.Log("Killing for " + id);
+                                                breakloop = true;
+                                                break;
+                                            }
                                         }
                                     }
 
@@ -197,13 +183,25 @@ public class Branching : MonoBehaviour
                                     {
                                         for (int j = 0; j < story.SI.Length; j++)
                                         {
-                                            if (story.SI[j] == 1)
+                                            if (story.SI[j] == 1 && story.StartInvestigation)
                                             {
                                                 // investigation
                                                 if (!gm.InvestigationStarted)
                                                 {
                                                     Debug.Log("Investigation");
+                                                    holder.GetComponent<Holder>().stored = investigation;
+                                                    holder.GetComponent<Holder>().AnswerPlay(story.answer1);
+                                                    holder.GetComponent<Holder>().UpdateBlock();
                                                     gm.InvestigationStarted = true;
+                                                    breakloop = true;
+                                                    break;
+                                                }
+                                                else if (gm.InvestigationStarted)
+                                                {
+                                                    // kill
+                                                    holder.GetComponent<Holder>().AnswerPlay(story.answer1, true);
+
+                                                    Debug.Log("Killing");
                                                     breakloop = true;
                                                     break;
                                                 }
@@ -232,10 +230,10 @@ public class Branching : MonoBehaviour
                                 {
                                     for (int i = 0; i < story.KillAt.Length; i++)
                                     {
-                                        if (story.KillAt[i] == 1)
+                                        if (story.KillAt[i] == 2)
                                         {
                                             // kill
-                                            Destroy(holder);
+                                            holder.GetComponent<Holder>().AnswerPlay(story.answer2, true);
                                             breakloop2 = true;
                                             break;
                                         }
@@ -245,12 +243,24 @@ public class Branching : MonoBehaviour
                                     {
                                         for (int j = 0; j < story.SI.Length; j++)
                                         {
-                                            if (story.SI[j] == 1)
+                                            if (story.SI[j] == 2 && story.StartInvestigation)
                                             {
                                                 // investigation
                                                 if (!gm.InvestigationStarted)
                                                 {
+                                                    Debug.Log("Investigation");
+                                                    holder.GetComponent<Holder>().stored = investigation;
+                                                    holder.GetComponent<Holder>().AnswerPlay(story.answer2);
+                                                    holder.GetComponent<Holder>().UpdateBlock();
                                                     gm.InvestigationStarted = true;
+                                                    breakloop2 = true;
+                                                    break;
+                                                }
+                                                else if (gm.InvestigationStarted)
+                                                {
+                                                    // kill
+                                                    holder.GetComponent<Holder>().AnswerPlay(story.answer2, true);
+                                                    Debug.Log("Killing");
                                                     breakloop2 = true;
                                                     break;
                                                 }
@@ -279,9 +289,10 @@ public class Branching : MonoBehaviour
                                 {
                                     for (int i = 0; i < story.KillAt.Length; i++)
                                     {
-                                        if (story.KillAt[i] == 1)
+                                        if (story.KillAt[i] == 3)
                                         {
                                             // kill
+                                            Debug.Log("Killed");
                                             Destroy(holder);
                                             breakloop3 = true;
                                             break;
@@ -292,12 +303,23 @@ public class Branching : MonoBehaviour
                                     {
                                         for (int j = 0; j < story.SI.Length; j++)
                                         {
-                                            if (story.SI[j] == 1)
+                                            if (story.SI[j] == 3 && story.StartInvestigation)
                                             {
                                                 // investigation
                                                 if (!gm.InvestigationStarted)
                                                 {
+                                                    Debug.Log("Investigation");
+                                                    holder.GetComponent<Holder>().stored = investigation;
+                                                    holder.GetComponent<Holder>().UpdateBlock();
                                                     gm.InvestigationStarted = true;
+                                                    breakloop3 = true;
+                                                    break;
+                                                }
+                                                else if (gm.InvestigationStarted)
+                                                {
+                                                    // kill
+                                                    Destroy(holder);
+                                                    Debug.Log("Killing");
                                                     breakloop3 = true;
                                                     break;
                                                 }
@@ -306,6 +328,8 @@ public class Branching : MonoBehaviour
 
                                         if (!breakloop3)
                                         {
+                                            holder.GetComponent<Holder>().stored = story.link3;
+                                            holder.GetComponent<Holder>().UpdateBlock();
                                             Debug.Log("Case " + id);
                                             break;
                                         }

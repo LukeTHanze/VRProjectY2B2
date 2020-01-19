@@ -17,11 +17,14 @@ MonoBehaviour:
   nestedBranchID: 0
   finalID: 0
   audio: {fileID: 8300000, guid: 2370b34e391271445ac19e7708167d9e, type: 3}
-  parallax: {fileID: 21300000, guid: 1ce251237dce6094e9d366efb498519a, type: 3}
+  mat: {fileID: 2100000, guid: 5959dcb70d494c04a89f32103d81e971, type: 2}
   option1: Kill The Dark Figures
   answer1: {fileID: 8300000, guid: 35aae54483b4f8044a78af457a1e32be, type: 3}
+  link1: {fileID: 11400000, guid: 6cdf3f3eed23f934e8c6af2718d365f6, type: 2}
   option2: Break Glass
   answer2: {fileID: 8300000, guid: df0b4ef8e0e737c42af149eae2c6b93d, type: 3}
+  link2: {fileID: 11400000, guid: 0b96512e9dc33214c93a5eb188149918, type: 2}
+  link3: {fileID: 0}
   StartInvestigation: 0
   SI: 
   IsPart2: 0

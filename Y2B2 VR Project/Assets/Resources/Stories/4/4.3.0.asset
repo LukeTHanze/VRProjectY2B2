@@ -17,11 +17,14 @@ MonoBehaviour:
   nestedBranchID: 0
   finalID: 0
   audio: {fileID: 8300000, guid: 4a2447acce28d6c4087acb6cec5d0a94, type: 3}
-  parallax: {fileID: 0}
+  mat: {fileID: 2100000, guid: a88f01d209ef50d418c71da4cd354ae4, type: 2}
   option1: Focus On Training
   answer1: {fileID: 8300000, guid: a25ded2809a9a7e48995203c5ef57514, type: 3}
+  link1: {fileID: 11400000, guid: 7933c70ed604eb84e866db88b2173703, type: 2}
   option2: Show It Off
   answer2: {fileID: 8300000, guid: 95cf7c41d4923e04fa530bd8ca55e460, type: 3}
+  link2: {fileID: 11400000, guid: d7ac1e2fa209c474a998349806890f56, type: 2}
+  link3: {fileID: 0}
   StartInvestigation: 0
   SI: 
   IsPart2: 0

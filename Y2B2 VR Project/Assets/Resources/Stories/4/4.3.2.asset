@@ -17,11 +17,14 @@ MonoBehaviour:
   nestedBranchID: 2
   finalID: 0
   audio: {fileID: 8300000, guid: 7ac3d02b9d257f449bac449eb8bad427, type: 3}
-  parallax: {fileID: 0}
+  mat: {fileID: 2100000, guid: 180aeb2503f3705429ff6846b46331a1, type: 2}
   option1: Focus On Inventions
   answer1: {fileID: 8300000, guid: ea8e1769696265f4e9542c2dd4188a18, type: 3}
+  link1: {fileID: 0}
   option2: Make Him A Scholar
   answer2: {fileID: 8300000, guid: e4f866545250d8e45b6a3937f6959db6, type: 3}
+  link2: {fileID: 0}
+  link3: {fileID: 0}
   StartInvestigation: 1
   SI: 02000000
   IsPart2: 0

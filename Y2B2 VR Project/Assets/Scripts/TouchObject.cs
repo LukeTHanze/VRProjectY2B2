@@ -72,7 +72,6 @@ public class TouchObject : MonoBehaviour
         gameObject.GetComponentInParent<NodeInfo>().MoveLocation();
         transform.eulerAngles = new Vector3(0, 0, 0);
 
-        //br.UpdateBranch(id, storyId, gameObject.GetComponentInParent<NodeInfo>().location, block, block2, gameObject, Twin, audios, hParent, hParent.GetComponent<Holder>().stored);
         gameObject.GetComponentInParent<NodeInfo>().GetComponentInParent<Holder>().CallBranch(id);
         if (id == 1)
         {

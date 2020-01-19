@@ -14,7 +14,7 @@ public class Stories : ScriptableObject
 
     [Header("Foundation")]
     public AudioClip audio; // AudioClip
-    public Sprite parallax; // or animation? depending on how we want to do it.
+    public Material mat;
 
     [Header("Interactables")]
     public string option1;
@@ -24,6 +24,8 @@ public class Stories : ScriptableObject
     public string option2;
     public AudioClip answer2;
     public Stories link2;
+
+    public Stories link3;
 
     [Header("Investigation")]
     public bool StartInvestigation;

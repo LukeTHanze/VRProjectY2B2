@@ -17,11 +17,14 @@ MonoBehaviour:
   nestedBranchID: 1
   finalID: 0
   audio: {fileID: 8300000, guid: 672fe6399265a96439e923be2ea71c26, type: 3}
-  parallax: {fileID: 21300000, guid: 1ce251237dce6094e9d366efb498519a, type: 3}
+  mat: {fileID: 2100000, guid: 8e5913f225eea104498695b8a921f7f6, type: 2}
   option1: Dont Allow it
   answer1: {fileID: 8300000, guid: 13ba5a6eb025e1f42bbf8a9cc933eaa1, type: 3}
+  link1: {fileID: 0}
   option2: Let Her
   answer2: {fileID: 8300000, guid: 280f05d9e1a4a0a45baa42ff11c8d3cd, type: 3}
+  link2: {fileID: 0}
+  link3: {fileID: 0}
   StartInvestigation: 0
   SI: 
   IsPart2: 0

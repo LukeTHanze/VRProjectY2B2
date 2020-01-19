@@ -17,11 +17,14 @@ MonoBehaviour:
   nestedBranchID: 0
   finalID: 0
   audio: {fileID: 8300000, guid: d104d558e43e4014e84f0922eef2cdaa, type: 3}
-  parallax: {fileID: 21300000, guid: 0388aff0b25c0d6468bdd4626251a1d7, type: 3}
+  mat: {fileID: 2100000, guid: 7a258f92cb8c2f0479ab902da0d9824f, type: 2}
   option1: Get Authorities
   answer1: {fileID: 8300000, guid: 09ff1d5f4378e1b468adbee17cabefa4, type: 3}
+  link1: {fileID: 11400000, guid: 188578c25f25b3345a03b408f1bd2c3c, type: 2}
   option2: Bring Them To Shelter
   answer2: {fileID: 8300000, guid: da78b98764ef8684a87af26da9ec732c, type: 3}
+  link2: {fileID: 0}
+  link3: {fileID: 0}
   StartInvestigation: 1
   SI: 0200000003000000
   IsPart2: 0

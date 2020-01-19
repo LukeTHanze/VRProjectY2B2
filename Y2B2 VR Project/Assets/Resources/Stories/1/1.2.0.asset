@@ -17,13 +17,14 @@ MonoBehaviour:
   nestedBranchID: 0
   finalID: 0
   audio: {fileID: 8300000, guid: d666b7b4bb902b240ba67dae96f33647, type: 3}
-  parallax: {fileID: 21300000, guid: 1ce251237dce6094e9d366efb498519a, type: 3}
+  mat: {fileID: 2100000, guid: a02b81b09acc5f148b6e87f506921ca0, type: 2}
   option1: Grant Her Benefits
   answer1: {fileID: 8300000, guid: 73196ef283086ea4bbee5506def11d14, type: 3}
   link1: {fileID: 0}
   option2: Make Her Lie
   answer2: {fileID: 8300000, guid: d7ea19f2bb88128479d0046a40d1d720, type: 3}
   link2: {fileID: 11400000, guid: 3c58db70d8abc1541a18760270bb9f97, type: 2}
+  link3: {fileID: 0}
   StartInvestigation: 1
   SI: 01000000
   IsPart2: 0

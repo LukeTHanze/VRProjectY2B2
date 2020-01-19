@@ -17,11 +17,14 @@ MonoBehaviour:
   nestedBranchID: 0
   finalID: 0
   audio: {fileID: 8300000, guid: e43bdb0db9c235b41a74f38c88f9febc, type: 3}
-  parallax: {fileID: 0}
+  mat: {fileID: 2100000, guid: 38b0d0f0cbb40a3409a737e156f0bac9, type: 2}
   option1: Show Them The Way
   answer1: {fileID: 0}
+  link1: {fileID: 0}
   option2: Remove The Paragon
   answer2: {fileID: 8300000, guid: 8c1d77fbca73c6943a3137c210f3de68, type: 3}
+  link2: {fileID: 0}
+  link3: {fileID: 0}
   StartInvestigation: 0
   SI: 
   IsPart2: 1
