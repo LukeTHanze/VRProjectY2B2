@@ -117,7 +117,11 @@ public class Holder : MonoBehaviour
         queuedAudio = answer;
         dj.Stop();
         dj.clip = answer;
-        ansTime = dj.clip.length;
+        if (dj.clip != null)
+            ansTime = dj.clip.length;
+        else
+            ansTime = 2f;
+        
     }
 
     public void UpdateClip()

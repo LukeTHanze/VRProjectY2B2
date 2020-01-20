@@ -26,7 +26,6 @@ MonoBehaviour:
   link2: {fileID: 0}
   link3: {fileID: 0}
   StartInvestigation: 0
-  SI: 
-  IsPart2: 1
+  isInvestigation: 1
   KillHere: 1
   KillAt: 010000000200000003000000

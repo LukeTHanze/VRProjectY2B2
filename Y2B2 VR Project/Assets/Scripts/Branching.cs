@@ -4,41 +4,13 @@ using UnityEngine;
 
 public class Branching : MonoBehaviour
 {
-
-
     /*
      * Information handler to find out where the story currently is and when to progress it
      */
 
-
-    /*
-     * 
-    [Header("Identity")]
-    public float id; // store id
-
-    [Header("Foundation")]
-    public AudioClip audio; // AudioClip
-    public Image parallax; // or animation? depending on how we want to do it.
-
-    [Header("Interactables")]
-    public bool isInteractable = true;
-    public string option1;
-    public Stories resultOption1;
-
-    public string option2;
-    public Stories resultOption2;
-
-    public Stories resultTimer; // time-out option
-
-    [Header("Kill Branch")]
-    public bool KillHere;
-    public AudioClip endStatement;
-
-     * 
-     */
-
     public Stories[] stories;
     public Stories investigation;
+    public GameObject portal1, portal2;
     public List<Stories> currentBranch = new List<Stories>(); // 0 <-> 3 - Displayed Stories // 4 <-> 7 - Stored Stories with canvas version
     public List<Stories> storedBranch = new List<Stories>();
     //public Stories[] newBranch = { null, null, null, null };
@@ -48,10 +20,16 @@ public class Branching : MonoBehaviour
     GameController gm;
     public bool InvestigationStarted;
 
+    [Header("Testing")]
+    public bool test = false, test2 = false;
+
     private void Start()
     {
         gm = GameObject.FindGameObjectWithTag("GameController").GetComponent<GameController>();
         stories = Resources.LoadAll<Stories>("Stories");
+
+        portal1.active = false;
+        portal2.active = false;
     }
 
     /*
@@ -95,6 +73,35 @@ public class Branching : MonoBehaviour
         }
     }
     */
+    private void Update()
+    {
+        if(test){
+            portal1.active = true;
+
+            GameObject[] holders = GameObject.FindGameObjectsWithTag("CHolder");
+            for (int i = 0; i < holders.Length; i++)
+            {
+                Destroy(holders[i]);
+            }
+
+            test = false;
+        }
+
+        if (test2)
+        {
+            portal2.active = true;
+
+            GameObject[] holders = GameObject.FindGameObjectsWithTag("CHolder");
+            for (int i = 0; i < holders.Length; i++)
+            {
+                Destroy(holders[i]);
+            }
+
+            test2 = false;
+
+           
+        }
+    }
 
     public void LoadStories()
     {
@@ -117,7 +124,7 @@ public class Branching : MonoBehaviour
         {
             if (story == storedStory)
             {
-                if (!story.KillHere && !story.StartInvestigation)
+                if (!story.KillHere && !story.StartInvestigation && !story.isInvestigation)
                 {
                     switch (id)
                     {
@@ -143,7 +150,7 @@ public class Branching : MonoBehaviour
                             break;
                     }
                 }
-                else
+                else if (!story.isInvestigation)
                 {
                     switch (id)
                     {
@@ -172,9 +179,9 @@ public class Branching : MonoBehaviour
                                     Debug.Log("Case " + id);
                                     break;
                                 }
-                                else if(story.StartInvestigation)
+                                else if (story.StartInvestigation)
                                 {
-                                    if(story.link1 == investigation && !InvestigationStarted)
+                                    if (story.link1 == investigation && !InvestigationStarted)
                                     {
                                         InvestigationStarted = true;
                                         holder.GetComponent<Holder>().stored = story.link1;
@@ -214,7 +221,7 @@ public class Branching : MonoBehaviour
                                         breakloop2 = true;
                                         break;
                                     }
-                                }                 
+                                }
                             }
                             if (!breakloop2)
                             {
@@ -310,7 +317,72 @@ public class Branching : MonoBehaviour
                             break;
                     }
                 }
+                else if (story.isInvestigation)
+                {
+                    switch (id)
+                    {
+                        case 1:
+                            bool breakloop = false;
+                            if (!breakloop)
+                            {
+                                for (int i = 0; i < story.KillAt.Length; i++)
+                                {
+                                    if (story.KillAt[i] == 1)
+                                    {
+                                        portal1.active = true;
+                                        test = true;
+                                        //holder.GetComponent<Holder>().AnswerPlay(story.answer1, true);
+                                        Debug.Log("ENDING GAME");
+                                        breakloop = true;
+                                        break;
+                                    }
+                                }
+                            }
+                            if (!breakloop)
+                            {
+                                holder.GetComponent<Holder>().stored = story.link1;
+                                holder.GetComponent<Holder>().AnswerPlay(story.answer1);
+                                holder.GetComponent<Holder>().UpdateBlock();
+                                Debug.Log("End Case " + id);
+                                break;
+                            }
+                            break;
+                        case 2:
+                            bool breakloop2 = false;
+                            if (!breakloop2)
+                            {
+                                for (int i = 0; i < story.KillAt.Length; i++)
+                                {
+                                    if (story.KillAt[i] == 2)
+                                    {
+                                        portal2.active = true;
+                                        test2 = true;
+                                        holder.GetComponent<Holder>().AnswerPlay(story.answer2, true);
+                                        Debug.Log("ENDING GAME");
+                                        breakloop2 = true;
+                                        break;
+                                    }
+                                }
+                            }
+                            if (!breakloop2)
+                            {
+                                holder.GetComponent<Holder>().stored = story.link2;
+                                holder.GetComponent<Holder>().AnswerPlay(story.answer2);
+                                holder.GetComponent<Holder>().UpdateBlock();
+                                Debug.Log("End Case " + id);
+                                break;
+                            }
+                            break;
+                        case 3:
+                            Destroy(holder);
+                            Debug.Log("ENDING GAME - KILL : " + id);
+                            break;
+                        default:
+                            break;
+                    }
+                }
             }
+            
         }
     }
 

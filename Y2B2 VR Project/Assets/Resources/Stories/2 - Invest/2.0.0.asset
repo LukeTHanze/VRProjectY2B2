@@ -26,7 +26,6 @@ MonoBehaviour:
   link2: {fileID: 11400000, guid: a8fc05f4c6edc4e47aafd6a4616c2c15, type: 2}
   link3: {fileID: 0}
   StartInvestigation: 0
-  SI: 
-  IsPart2: 1
+  isInvestigation: 1
   KillHere: 0
   KillAt: 03000000
