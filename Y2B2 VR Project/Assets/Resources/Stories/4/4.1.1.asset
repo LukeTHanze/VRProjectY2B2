@@ -20,13 +20,11 @@ MonoBehaviour:
   mat: {fileID: 2100000, guid: 73852f78d6f9b134f803927790436210, type: 2}
   option1: Stage A Coup
   answer1: {fileID: 8300000, guid: 9dd44a50ab5b3464f84f684419c44462, type: 3}
-  link1: {fileID: 0}
+  link1: {fileID: 11400000, guid: d6c9440a2457d594ebe0d04009851ec1, type: 2}
   option2: Politely Decline
   answer2: {fileID: 8300000, guid: 804ca846c3da6e547bd5483cf7dee1cc, type: 3}
   link2: {fileID: 0}
   link3: {fileID: 0}
   StartInvestigation: 1
-  SI: 01000000
-  IsPart2: 0
   KillHere: 1
   KillAt: 0200000003000000

@@ -29,8 +29,6 @@ public class Stories : ScriptableObject
 
     [Header("Investigation")]
     public bool StartInvestigation;
-    public int[] SI;
-    public bool IsPart2;
 
     [Header("Kill Branch 1")]
     public bool KillHere;

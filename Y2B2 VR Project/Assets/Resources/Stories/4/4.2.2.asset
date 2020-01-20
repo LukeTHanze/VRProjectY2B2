@@ -20,13 +20,11 @@ MonoBehaviour:
   mat: {fileID: 2100000, guid: 19627235f5927c64d83006c7408cc108, type: 2}
   option1: Give Blueprints To Specialist
   answer1: {fileID: 8300000, guid: 35d5f442ff2f4964eadf4f91d6fce254, type: 3}
-  link1: {fileID: 0}
+  link1: {fileID: 11400000, guid: d6c9440a2457d594ebe0d04009851ec1, type: 2}
   option2: Burn The Papers
   answer2: {fileID: 8300000, guid: 533500e73e6367044b519d942ae7bc98, type: 3}
   link2: {fileID: 0}
   link3: {fileID: 0}
   StartInvestigation: 1
-  SI: 01000000
-  IsPart2: 0
   KillHere: 1
   KillAt: 0200000003000000

@@ -23,10 +23,8 @@ MonoBehaviour:
   link1: {fileID: 11400000, guid: 8a1d5f0ca3e1b0840b0b71409ee651d5, type: 2}
   option2: Create A Weapon
   answer2: {fileID: 8300000, guid: 9ab892b72a5074f40bd56690d909c920, type: 3}
-  link2: {fileID: 0}
+  link2: {fileID: 11400000, guid: d6c9440a2457d594ebe0d04009851ec1, type: 2}
   link3: {fileID: 0}
   StartInvestigation: 1
-  SI: 02000000
-  IsPart2: 0
   KillHere: 1
   KillAt: 03000000

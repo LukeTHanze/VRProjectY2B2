@@ -146,7 +146,7 @@ public class Holder : MonoBehaviour
         opt1.GetComponent<WarpText>().UpdateText(stored.option1);
         opt2.GetComponent<WarpText>().UpdateText(stored.option2);
 
-       // gameObject.GetComponentInChildren<MeshRenderer>().materials[0] = stored.mat;
+        gameObject.GetComponentInChildren<MeshRenderer>().materials[0] = stored.mat;
         // dj.clip = stored.audio;
     }
 }

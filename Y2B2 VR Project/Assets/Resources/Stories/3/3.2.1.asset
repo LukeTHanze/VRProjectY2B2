@@ -20,13 +20,11 @@ MonoBehaviour:
   mat: {fileID: 2100000, guid: a298ef9e9650e134d8ce73f57e85e1c7, type: 2}
   option1: Cover Your Tracks
   answer1: {fileID: 8300000, guid: b4c116f7c36427149b0d3d07bb436476, type: 3}
-  link1: {fileID: 0}
+  link1: {fileID: 11400000, guid: d6c9440a2457d594ebe0d04009851ec1, type: 2}
   option2: Help Prepare
   answer2: {fileID: 8300000, guid: 7e68e40450b1a464bb422988477d9354, type: 3}
   link2: {fileID: 0}
-  link3: {fileID: 0}
+  link3: {fileID: 11400000, guid: 1acafb53b9c007542b026be942c6ff3e, type: 2}
   StartInvestigation: 1
-  SI: 0100000003000000
-  IsPart2: 0
   KillHere: 1
   KillAt: 02000000

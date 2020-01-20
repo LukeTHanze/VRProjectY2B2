@@ -25,8 +25,6 @@ MonoBehaviour:
   answer2: {fileID: 8300000, guid: d0723d9f2137de74193023530e826b59, type: 3}
   link2: {fileID: 11400000, guid: d6c9440a2457d594ebe0d04009851ec1, type: 2}
   link3: {fileID: 0}
-  StartInvestigation: 0
-  SI: 02000000
-  IsPart2: 0
+  StartInvestigation: 1
   KillHere: 1
   KillAt: 03000000

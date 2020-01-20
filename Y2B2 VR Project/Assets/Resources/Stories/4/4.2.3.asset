@@ -23,10 +23,8 @@ MonoBehaviour:
   link1: {fileID: 0}
   option2: Make Him A Scholar
   answer2: {fileID: 8300000, guid: bb1b7ef40db8d54489153e7451a9d95f, type: 3}
-  link2: {fileID: 0}
+  link2: {fileID: 11400000, guid: d6c9440a2457d594ebe0d04009851ec1, type: 2}
   link3: {fileID: 0}
   StartInvestigation: 1
-  SI: 02000000
-  IsPart2: 0
   KillHere: 1
   KillAt: 0100000003000000

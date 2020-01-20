@@ -20,13 +20,11 @@ MonoBehaviour:
   mat: {fileID: 2100000, guid: 29a50da929c77d644b97dd72cb62070f, type: 2}
   option1: Fight The Beast
   answer1: {fileID: 8300000, guid: b2b9333a2104dd04e9e00807e1c08f4d, type: 3}
-  link1: {fileID: 0}
+  link1: {fileID: 11400000, guid: d6c9440a2457d594ebe0d04009851ec1, type: 2}
   option2: Send James Home
   answer2: {fileID: 8300000, guid: c51f1beaf288ff94e9e3d7590bd0be41, type: 3}
-  link2: {fileID: 0}
+  link2: {fileID: 11400000, guid: d6c9440a2457d594ebe0d04009851ec1, type: 2}
   link3: {fileID: 0}
   StartInvestigation: 1
-  SI: 0100000002000000
-  IsPart2: 0
   KillHere: 0
   KillAt: 03000000

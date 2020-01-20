@@ -20,13 +20,11 @@ MonoBehaviour:
   mat: {fileID: 2100000, guid: 607f4a0e7f9cb9c4ea095bc2386facc6, type: 2}
   option1: Fix Her
   answer1: {fileID: 8300000, guid: e673d52fc4c98ab4582ef3c87dd11a27, type: 3}
-  link1: {fileID: 0}
+  link1: {fileID: 11400000, guid: d6c9440a2457d594ebe0d04009851ec1, type: 2}
   option2: Comfort Her
   answer2: {fileID: 8300000, guid: 6cfcb2014b606da429cc1ca67a8825ec, type: 3}
   link2: {fileID: 0}
   link3: {fileID: 0}
   StartInvestigation: 1
-  SI: 01000000
-  IsPart2: 0
   KillHere: 1
   KillAt: 0200000003000000

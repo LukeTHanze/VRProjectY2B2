@@ -40,20 +40,20 @@ public class Branching : MonoBehaviour
     public Stories[] stories;
     public Stories investigation;
     public List<Stories> currentBranch = new List<Stories>(); // 0 <-> 3 - Displayed Stories // 4 <-> 7 - Stored Stories with canvas version
-    public  List<Stories> storedBranch = new List<Stories>();
+    public List<Stories> storedBranch = new List<Stories>();
     //public Stories[] newBranch = { null, null, null, null };
     public int accessed;
     public int result, result2;
 
     GameController gm;
-    
+    public bool InvestigationStarted;
 
     private void Start()
     {
         gm = GameObject.FindGameObjectWithTag("GameController").GetComponent<GameController>();
         stories = Resources.LoadAll<Stories>("Stories");
     }
-    
+
     /*
     public void UpdateBranch()
     {
@@ -113,7 +113,7 @@ public class Branching : MonoBehaviour
 
     public void UpdateBranches(int id, Stories storedStory, GameObject holder)
     {
-        foreach(Stories story in stories)
+        foreach (Stories story in stories)
         {
             if (story == storedStory)
             {
@@ -148,191 +148,159 @@ public class Branching : MonoBehaviour
                     switch (id)
                     {
                         case 1:
-                            bool noresult = false;
                             bool breakloop = false;
-                            if (!noresult)
+                            if (!breakloop)
                             {
-                                if (!breakloop)
+                                for (int i = 0; i < story.KillAt.Length; i++)
                                 {
-                                    for (int i = 0; i < story.KillAt.Length; i++)
+                                    if (story.KillAt[i] == 1)
                                     {
-                                        if (story.KillAt[i] == 1)
-                                        {
-                                            // kill
-                                            if (!story.IsPart2)
-                                            {
-                                                holder.GetComponent<Holder>().AnswerPlay(story.answer1, true);
-                                                Debug.Log("Killing");
-                                                breakloop = true;
-                                                break;
-                                            }
-                                            else
-                                            {
-                                                // portal 1
-                                                // just spawn ??
-                                                holder.GetComponent<Holder>().AnswerPlay(story.answer1, true);
-
-                                                Debug.Log("Killing for " + id);
-                                                breakloop = true;
-                                                break;
-                                            }
-                                        }
+                                        holder.GetComponent<Holder>().AnswerPlay(story.answer1, true);
+                                        Debug.Log("Killing");
+                                        breakloop = true;
+                                        break;
                                     }
-
-                                    if (!breakloop)
+                                }
+                            }
+                            if (!breakloop)
+                            {
+                                if (!story.StartInvestigation)
+                                {
+                                    holder.GetComponent<Holder>().stored = story.link1;
+                                    holder.GetComponent<Holder>().AnswerPlay(story.answer1);
+                                    holder.GetComponent<Holder>().UpdateBlock();
+                                    Debug.Log("Case " + id);
+                                    break;
+                                }
+                                else if(story.StartInvestigation)
+                                {
+                                    if(story.link1 == investigation && !InvestigationStarted)
                                     {
-                                        for (int j = 0; j < story.SI.Length; j++)
-                                        {
-                                            if (story.SI[j] == 1 && story.StartInvestigation)
-                                            {
-                                                // investigation
-                                                if (!gm.InvestigationStarted)
-                                                {
-                                                    Debug.Log("Investigation");
-                                                    holder.GetComponent<Holder>().stored = investigation;
-                                                    holder.GetComponent<Holder>().AnswerPlay(story.answer1);
-                                                    holder.GetComponent<Holder>().UpdateBlock();
-                                                    gm.InvestigationStarted = true;
-                                                    breakloop = true;
-                                                    break;
-                                                }
-                                                else if (gm.InvestigationStarted)
-                                                {
-                                                    // kill
-                                                    holder.GetComponent<Holder>().AnswerPlay(story.answer1, true);
-
-                                                    Debug.Log("Killing");
-                                                    breakloop = true;
-                                                    break;
-                                                }
-                                            }
-                                        }
-
-                                        if (!breakloop)
-                                        {
-                                            holder.GetComponent<Holder>().stored = story.link1;
-                                            holder.GetComponent<Holder>().AnswerPlay(story.answer1);
-                                            holder.GetComponent<Holder>().UpdateBlock();
-                                            Debug.Log("Case " + id);
-                                            break;
-                                        }
+                                        InvestigationStarted = true;
+                                        holder.GetComponent<Holder>().stored = story.link1;
+                                        holder.GetComponent<Holder>().AnswerPlay(story.answer1);
+                                        holder.GetComponent<Holder>().UpdateBlock();
+                                        Debug.Log("Case " + id);
+                                        break;
+                                    }
+                                    else if (story.link1 == investigation && InvestigationStarted)
+                                    {
+                                        holder.GetComponent<Holder>().AnswerPlay(story.answer1, true);
+                                        Debug.Log("Killing");
+                                        break;
+                                    }
+                                    else
+                                    {
+                                        holder.GetComponent<Holder>().stored = story.link1;
+                                        holder.GetComponent<Holder>().AnswerPlay(story.answer1);
+                                        holder.GetComponent<Holder>().UpdateBlock();
+                                        Debug.Log("Case " + id);
+                                        break;
                                     }
                                 }
                             }
                             break;
                         case 2:
-                            bool noresult2 = false;
                             bool breakloop2 = false;
-                            if (!noresult2)
+
+                            if (!breakloop2)
                             {
-
-                                if (!breakloop2)
+                                for (int i = 0; i < story.KillAt.Length; i++)
                                 {
-                                    for (int i = 0; i < story.KillAt.Length; i++)
+                                    if (story.KillAt[i] == 2)
                                     {
-                                        if (story.KillAt[i] == 2)
-                                        {
-                                            // kill
-                                            holder.GetComponent<Holder>().AnswerPlay(story.answer2, true);
-                                            breakloop2 = true;
-                                            break;
-                                        }
+                                        // kill
+                                        holder.GetComponent<Holder>().AnswerPlay(story.answer2, true);
+                                        breakloop2 = true;
+                                        break;
                                     }
-
-                                    if (!breakloop2)
+                                }                 
+                            }
+                            if (!breakloop2)
+                            {
+                                if (!story.StartInvestigation)
+                                {
+                                    holder.GetComponent<Holder>().stored = story.link2;
+                                    holder.GetComponent<Holder>().AnswerPlay(story.answer2);
+                                    holder.GetComponent<Holder>().UpdateBlock();
+                                    Debug.Log("Case " + id);
+                                    break;
+                                }
+                                else if (story.StartInvestigation)
+                                {
+                                    if (story.link2 == investigation && !InvestigationStarted)
                                     {
-                                        for (int j = 0; j < story.SI.Length; j++)
-                                        {
-                                            if (story.SI[j] == 2 && story.StartInvestigation)
-                                            {
-                                                // investigation
-                                                if (!gm.InvestigationStarted)
-                                                {
-                                                    Debug.Log("Investigation");
-                                                    holder.GetComponent<Holder>().stored = investigation;
-                                                    holder.GetComponent<Holder>().AnswerPlay(story.answer2);
-                                                    holder.GetComponent<Holder>().UpdateBlock();
-                                                    gm.InvestigationStarted = true;
-                                                    breakloop2 = true;
-                                                    break;
-                                                }
-                                                else if (gm.InvestigationStarted)
-                                                {
-                                                    // kill
-                                                    holder.GetComponent<Holder>().AnswerPlay(story.answer2, true);
-                                                    Debug.Log("Killing");
-                                                    breakloop2 = true;
-                                                    break;
-                                                }
-                                            }
-                                        }
-
-                                        if (!breakloop2)
-                                        {
-                                            holder.GetComponent<Holder>().stored = story.link2;
-                                            holder.GetComponent<Holder>().AnswerPlay(story.answer2);
-                                            holder.GetComponent<Holder>().UpdateBlock();
-                                            Debug.Log("Case " + id);
-                                            break;
-                                        }
+                                        InvestigationStarted = true;
+                                        holder.GetComponent<Holder>().stored = story.link2;
+                                        holder.GetComponent<Holder>().AnswerPlay(story.answer2);
+                                        holder.GetComponent<Holder>().UpdateBlock();
+                                        Debug.Log("Case " + id);
+                                        break;
+                                    }
+                                    else if (story.link2 == investigation && InvestigationStarted)
+                                    {
+                                        holder.GetComponent<Holder>().AnswerPlay(story.answer2, true);
+                                        Debug.Log("Killing");
+                                        break;
+                                    }
+                                    else
+                                    {
+                                        holder.GetComponent<Holder>().stored = story.link2;
+                                        holder.GetComponent<Holder>().AnswerPlay(story.answer2);
+                                        holder.GetComponent<Holder>().UpdateBlock();
+                                        Debug.Log("Case " + id);
+                                        break;
                                     }
                                 }
                             }
                             break;
                         case 3:
-                            bool noresult3 = false;
                             bool breakloop3 = false;
-                            if (!noresult3)
+
+                            if (!breakloop3)
                             {
-
-                                if (!breakloop3)
+                                for (int i = 0; i < story.KillAt.Length; i++)
                                 {
-                                    for (int i = 0; i < story.KillAt.Length; i++)
+                                    if (story.KillAt[i] == 3)
                                     {
-                                        if (story.KillAt[i] == 3)
-                                        {
-                                            // kill
-                                            Debug.Log("Killed");
-                                            Destroy(holder);
-                                            breakloop3 = true;
-                                            break;
-                                        }
+                                        // kill
+                                        Debug.Log("Killed");
+                                        Destroy(holder);
+                                        breakloop3 = true;
+                                        break;
                                     }
-
-                                    if (!breakloop3)
+                                }
+                            }
+                            if (!breakloop3)
+                            {
+                                if (!story.StartInvestigation)
+                                {
+                                    holder.GetComponent<Holder>().stored = story.link3;
+                                    holder.GetComponent<Holder>().UpdateBlock();
+                                    Debug.Log("Case " + id);
+                                    break;
+                                }
+                                else if (story.StartInvestigation)
+                                {
+                                    if (story.link3 == investigation && !InvestigationStarted)
                                     {
-                                        for (int j = 0; j < story.SI.Length; j++)
-                                        {
-                                            if (story.SI[j] == 3 && story.StartInvestigation)
-                                            {
-                                                // investigation
-                                                if (!gm.InvestigationStarted)
-                                                {
-                                                    Debug.Log("Investigation");
-                                                    holder.GetComponent<Holder>().stored = investigation;
-                                                    holder.GetComponent<Holder>().UpdateBlock();
-                                                    gm.InvestigationStarted = true;
-                                                    breakloop3 = true;
-                                                    break;
-                                                }
-                                                else if (gm.InvestigationStarted)
-                                                {
-                                                    // kill
-                                                    Destroy(holder);
-                                                    Debug.Log("Killing");
-                                                    breakloop3 = true;
-                                                    break;
-                                                }
-                                            }
-                                        }
-
-                                        if (!breakloop3)
-                                        {
-                                            holder.GetComponent<Holder>().stored = story.link3;
-                                            holder.GetComponent<Holder>().UpdateBlock();
-                                            Debug.Log("Case " + id);
-                                            break;
-                                        }
+                                        InvestigationStarted = true;
+                                        holder.GetComponent<Holder>().stored = story.link3;
+                                        holder.GetComponent<Holder>().UpdateBlock();
+                                        Debug.Log("Case " + id);
+                                        break;
+                                    }
+                                    else if (story.link3 == investigation && InvestigationStarted)
+                                    {
+                                        Debug.Log("Killing");
+                                        break;
+                                    }
+                                    else
+                                    {
+                                        holder.GetComponent<Holder>().stored = story.link3;
+                                        holder.GetComponent<Holder>().UpdateBlock();
+                                        Debug.Log("Case " + id);
+                                        break;
                                     }
                                 }
                             }
