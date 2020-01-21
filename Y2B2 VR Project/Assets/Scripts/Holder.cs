@@ -8,6 +8,7 @@ public class Holder : MonoBehaviour
     public AudioClip aclip;
 
     public GameObject opt1, opt2;
+    public GameObject matHolder;
 
     public Stories stored;
 
@@ -150,7 +151,7 @@ public class Holder : MonoBehaviour
         opt1.GetComponent<WarpText>().UpdateText(stored.option1);
         opt2.GetComponent<WarpText>().UpdateText(stored.option2);
 
-        gameObject.GetComponentInChildren<MeshRenderer>().materials[0] = stored.mat;
-        // dj.clip = stored.audio;
+        matHolder.GetComponent<MeshRenderer>().material = stored.mat;
     }
+
 }

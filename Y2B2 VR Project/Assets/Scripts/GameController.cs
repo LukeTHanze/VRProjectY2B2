@@ -38,6 +38,9 @@ public class GameController : MonoBehaviour
         float time3 = Random.RandomRange(2f, 15f);
         StartCoroutine(Spawn(holders[2], time3));
 
+        //int owo = Random.Range(0, 30);
+        Debug.Log("UWU TIME: " + Random.Range(0, 30));
+
     }
 
     IEnumerator Spawn(GameObject toSpawn, float waitTime)

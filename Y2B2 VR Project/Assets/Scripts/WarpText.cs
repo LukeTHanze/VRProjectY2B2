@@ -62,7 +62,7 @@ public class WarpText : MonoBehaviour
             prefabs.Add(Instantiate(TextMeshPrefab, pos, rot, transform.parent = transform));
             char c = RoundText[i];
             prefabs[i].GetComponentInChildren<TextMeshPro>().text = c.ToString();
-            ang += -180 / RoundText.Length - 1;
+            ang += -200 / RoundText.Length - 1;
 
             prefabs[i].transform.rotation = Quaternion.Euler(90, prefabs[i].transform.rotation.y + 90, prefabs[i].transform.rotation.z);
 

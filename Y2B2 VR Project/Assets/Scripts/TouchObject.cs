@@ -16,6 +16,7 @@ public class TouchObject : MonoBehaviour
     public AudioSource audios;
 
     [Header("Renderer Options")]
+    public ParticleSystem part;
     public Renderer rend;
     public Material result, start;
 
@@ -49,6 +50,7 @@ public class TouchObject : MonoBehaviour
     {
         if (select)
         {
+            part.enableEmission = true;
             WaitForWake();
 
             gameObject.GetComponentInParent<NodeInfo>().location++;
@@ -58,7 +60,7 @@ public class TouchObject : MonoBehaviour
             block = br.result;
             br.result = 0;
 
-            StartCoroutine(FixRotation(0.1f));
+            StartCoroutine(FixRotation(0.2f));
 
             select = false;
         }
@@ -113,6 +115,8 @@ public class TouchObject : MonoBehaviour
             }
             
         }
+
+        part.enableEmission = false;
         //StartCoroutine(WaitForAudio(1.0f));
     }
 
@@ -147,13 +151,15 @@ public class TouchObject : MonoBehaviour
         started = true;
     }
 
+    public void FixRot()
+    {
+        StartCoroutine(FixRotation(0.1f));
+    }
 
     private void OnTriggerEnter(Collider other) // works with OnCollisionEnter also
     {
         if(other.gameObject.tag == "Player")
         {
-            Debug.Log("Touched box");
-
             select = true;
         }
     }
