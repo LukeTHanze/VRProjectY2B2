@@ -29,17 +29,13 @@ public class Holder : MonoBehaviour
     [Header("Test")]
     public bool test;
     public Stories newStored;
-    public Vector3 storedPos;
-    public Vector3 target;
 
     void Start()
     {
         br = GameObject.FindGameObjectWithTag("GameController").GetComponent<Branching>();
         dj = gameObject.GetComponentInChildren<AudioSource>();
 
-        storedPos = transform.position;
-        target = new Vector3(transform.position.x, -0.55f, transform.position.y);
-
+        
         UpdateClip();
         dj.Play();
     }
@@ -55,7 +51,7 @@ public class Holder : MonoBehaviour
                 {
                     br.UpdateBranches(3, stored, gameObject);
                 }
-                startTime = Random.RandomRange(4f, 20f);
+                startTime = Random.RandomRange(2f, 15f);
                 StartCoroutine(Respawn(startTime));
                 Debug.Log("AUDIO CLIP ENDED! w/" + startTime);
             }
@@ -64,7 +60,7 @@ public class Holder : MonoBehaviour
                 if(ansTime <= 0)
                 {
                     trigger = false;
-                    startTime = Random.RandomRange(4f, 20f);
+                    startTime = Random.RandomRange(2f, 15f);
                     dj.Stop();
                     StartCoroutine(Respawn(startTime));
                 }

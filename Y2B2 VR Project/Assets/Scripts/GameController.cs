@@ -29,14 +29,17 @@ public class GameController : MonoBehaviour
             holders[i].active = false;
         }
 
-        float time1 = Random.RandomRange(8f, 22f);
+        float time1 = Random.RandomRange(2f, 15f);
         StartCoroutine(Spawn(holders[0], time1));
 
-        float time2 = Random.RandomRange(8f, 22f);
+        float time2 = Random.RandomRange(2f, 15f);
         StartCoroutine(Spawn(holders[1], time2));
 
-        float time3 = Random.RandomRange(8f, 22f);
+        float time3 = Random.RandomRange(2f, 15f);
         StartCoroutine(Spawn(holders[2], time3));
+
+        //int owo = Random.Range(0, 30);
+        Debug.Log("UWU TIME: " + Random.Range(0, 30));
 
     }
 
@@ -44,6 +47,7 @@ public class GameController : MonoBehaviour
     {
         yield return new WaitForSeconds(waitTime);
         toSpawn.active = true;
+        //Instantiate(toSpawn, new Vector3(0, 0, 0), Quaternion.identity);
     }
 
 
