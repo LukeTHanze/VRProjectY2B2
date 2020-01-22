@@ -51,7 +51,7 @@ public class Holder : MonoBehaviour
                 {
                     br.UpdateBranches(3, stored, gameObject);
                 }
-                startTime = Random.RandomRange(2f, 15f);
+                startTime = Random.RandomRange(4f, 18f);
                 StartCoroutine(Respawn(startTime));
                 Debug.Log("AUDIO CLIP ENDED! w/" + startTime);
             }
@@ -60,7 +60,7 @@ public class Holder : MonoBehaviour
                 if(ansTime <= 0)
                 {
                     trigger = false;
-                    startTime = Random.RandomRange(2f, 15f);
+                    startTime = Random.RandomRange(4f, 18f);
                     dj.Stop();
                     StartCoroutine(Respawn(startTime));
                 }
